@@ -1,4 +1,4 @@
-#!/usr/bin/python -tt
+#!/salt/bin/python -tt
 '''
 created on 14th March 2018
 @author: Abhishek Chattopadhyay
