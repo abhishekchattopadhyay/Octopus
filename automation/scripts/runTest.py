@@ -47,6 +47,7 @@ class test:
 		self.holdTime		=	elements['holdTime']
 		self.onFailRestart	=	elements['onFailRestart']
 		self.emailTo		=	elements['emailTo']
+		self.monitor_delay	=	elements['MONITOR_DEALY']
 
 	def executeupgrade(self):
 			command = './scripts/upgradeRMX ' +  self.RmxIp + ' ' + self.RmxUser + ' ' + self.RmxPass 

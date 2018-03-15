@@ -73,6 +73,7 @@ def getXmlElem(file):
 	elements['protocol']	=	root.find('PROTOCOL').text
 	elements['onFailRestart']	=	root.find('ON_FAIL_RESTART').text
 	elements['emailTo']		=	root.find('EMAILTO').text
+	elements['monitor_delay']=	root.find('MONITOR_DELAY').text
 	print (elements)
 	return elements
 
