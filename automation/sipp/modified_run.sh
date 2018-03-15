@@ -1,4 +1,5 @@
 #!/bin/bash
+#usage ./run.sh <sipp-ip> <dma-ip> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <audioOnly=1 or audioVideo=2>
 
 sippIP=$1 #'10.206.151.26' #arg1 -si
 dmaSutIP=$2 #'10.206.151.56' #arg2 -di
@@ -9,10 +10,12 @@ rate=$6 #5000 #arg6 -r
 holdTimeMil=$7 #70000 #arg7 -h
 ratePeriodMil=1000000 #arg8 -rp
 injectionFile="20partconfaudio.inf" #arg9 -inf
+tcName=$8
 now=`date +%F_%M-%S`
-statFile=sipp-statistics_${now}.csv
+#statFile=sipp-statistics_${now}.csv
+statFile=${tcName}.csv
 runTime="`echo "${runTimeHr} * 3600  + ${runTimeMin} * 60 + ${runTimeSec}" | bc`s"
-opt=$8
+opt=$9
 if [ $opt -eq 1 ]
 then
 	scenario='scen-uac.xml'

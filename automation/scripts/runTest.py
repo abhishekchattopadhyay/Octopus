@@ -5,6 +5,7 @@ created on March 7, 2018
 @author: achattopadhyay
 '''
 from __future__ import print_function
+import time
 import os
 import sys
 from sys import argv
@@ -19,7 +20,10 @@ class test:
 	'''
 	def __init__(self,elements):
 		self.name			= 	elements['name']
-		self.duration		= 	elements['duration']
+		self.durationH		= 	elements['durationH']
+		self.durationM		= 	elements['durationM']
+		self.durationS		= 	elements['durationS']
+		self.rate			=	elements['rate']
 		self.recurrence		=	elements['recurrence']	
 		self.time			= 	elements['time']
 		self.date			= 	elements['date']
@@ -30,12 +34,17 @@ class test:
 		self.RmxPass		=	elements['RmxPass']
 		self.RmxSuPass		=	elements['RmxSuPass']
 		self.DmaIp			=	elements['DmaIp']
-		self.SippIp1		=	elements['SippIp1']
-		self.SippIp2		=	elements['SippIp2']
+		self.Sipp1Ip		=	elements['Sipp1Ip']
+		self.Sipp1Usr		=	elements['Sipp1Usr']
+		self.Sipp1Pass		=	elements['Sipp1Pass']
+		self.Sipp2Ip		=	elements['Sipp2Ip']
+		self.Sipp2Usr		=	elements['Sipp2Usr']
+		self.Sipp2Pass		=	elements['Sipp2Pass']
 		self.testType		=	elements['testType']
 		self.videoType		=	elements['videoType']
 		self.protocol		=	elements['protocol']
-		self.protocol		=	elements['FR']
+		self.FR				=	elements['FR']
+		self.holdTime		=	elements['holdTime']
 		self.onFailRestart	=	elements['onFailRestart']
 		self.emailTo		=	elements['emailTo']
 
@@ -50,6 +59,19 @@ class test:
 			return True	
 
 	def runSipp(self):
+		#here we'll have to check if one or two sipp is required
+		# runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate>
+		command = './scripts/runSipp ' + self.Sipp1Ip + ' ' + self.Sipp1Usr + ' ' + self.Sipp1Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.testType + ' ' + self.FR + ' '
+		print (command)
+		process = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+		(stdout, stderr) = process.communicate()
+		
+		if self.RmxType == 'RMX4000':
+			# we'll need two sipp machines started the 1st instance anyway
+			command = './scripts/runSipp ' + self.Sipp2Ip + ' ' + self.Sipp2Usr + ' ' + self.Sipp2Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.testType + ' ' + self.FR + ' ' + '&'
+			print (command)
+			process = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+			(stdout, stderr) = process.communicate()
 		return
 
 def main(myargs):
@@ -64,6 +86,10 @@ def main(myargs):
 
 	testFile = helper.getTestXml(testFile)
 	t1 = test(helper.getXmlElem(testFile)) #	t1 now has all the user details
+	
+	attrs = vars(t1)
+	# now dump this in some way or another
+	print ('Class is like below: \n',', '.join("%s: %s" % item for item in attrs.items()))
 	
 	'''
 	stage 1:
@@ -84,13 +110,16 @@ def main(myargs):
 		raise ValueError ('ERROR: Bad test case parameters, check: target rmx build')
 
 	# now upgrade the RMX
-	if not t1.executeupgrade():
-		raise ValueError ('Error: issue with rmx upgrade')
+	print ('Upgrading RMX\n')
+	#if not t1.executeupgrade():
+	#	raise ValueError ('Error: issue with rmx upgrade')
 
 	# we'll wait for 20 mins after this
-	time.sleep(20)
+	print ('Wait for 20 mins and hold on for the RMX to upgrade')
+	time.sleep(.10)
 
 	# now run sipp
+	print ('\n Running Sipp')
 	t1.runSipp()
 	return
 

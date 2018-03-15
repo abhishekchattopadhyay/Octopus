@@ -1,4 +1,10 @@
 #!/bin/bash
 
-sleep 10
-touch /tmp/doone.txt
+while [ 1 ]
+do
+echo $1
+echo $2
+date
+sleep 1
+done
+
