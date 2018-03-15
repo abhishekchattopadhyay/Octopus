@@ -1,4 +1,4 @@
-#!/salt/bin/python -tt
+#!/usr/bin/python -tt
 '''
 created on 14th March 2018
 @author: Abhishek Chattopadhyay
@@ -29,7 +29,7 @@ def getopts(argv):
 		if argv[0][0] == '-': # found a "-name value" pair.
 			opts[argv[0]] = argv[1] # add key and value to the dictionary
 		argv = argv[1:] #  reduce the arg list, copyit from 1
-	#print (opts)
+	print (opts)
 	return opts
 
 def gotSpace():
@@ -65,6 +65,21 @@ def determinelatestbuild():
 	print ('latest available build :' + latestbuild)
 	return latestbuild
 
+def buildavailable(build):
+	global url
+	print ('global url :' + url)
+	url1 = url + build + delm + 'BL_names.txt'
+	print ('checking: ' + url1)
+	resp = requests.get(url1)
+	print (resp)
+	if resp.status_code == 200:
+		buildName = resp.text.split('\n')[0].split('=')[1].strip(' ')
+		if buildName == build:
+			return True
+	else:
+		#raise ValueError ('ERROR: Build doesnt exist')
+		return False
+
 def main(myargs):
 	global rmxType
 	global buildToDownload
@@ -85,10 +100,17 @@ def main(myargs):
 	# determine desired build 
 	try:
 		if '-b' in myargs.keys():
+			print (myargs.keys())
 			userbuild = myargs['-b']
+			print (userbuild)
 			print (url+userbuild+delm)
 			if userbuild != 'default':
-				url = url + userbuild + delm
+				print ('user build is not default')
+				if buildavailable(userbuild):
+					url = url + userbuild + delm
+				else:
+					print ('Error: Not a good build')
+					raise ValueError('Error: Not a good build')
 			else:
 				url += defaultBuild + delm
 		else:
