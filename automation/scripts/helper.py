@@ -53,6 +53,7 @@ def getXmlElem(file):
 	elements['holdTime']	=	root.find('HOLDTIME').text
 	elements['time']		=	root.find('SCHEDULE_TIME').text
 	elements['date']		=	root.find('SCHEDULE_DATE').text
+	elements['schd_policy']	=	root.find('SCHEDULE_POLICY').text
 	elements['recurrence']	=	root.find('RECURRENCE').text
 	elements['RmxIp']		=	root.find('RMX_IP').text
 	elements['RmxBuild']	=	root.find('RMX_BUILD').text

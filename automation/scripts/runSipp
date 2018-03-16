@@ -1,7 +1,7 @@
 #!/usr/bin/expect
 
-#usage
-# runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate>
+#	usage
+#	runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate> <monitor delay>
 
 set timeout 60
 set prompt "root@sipp?*"
@@ -15,6 +15,7 @@ set holdTime [lindex $argv 8]
 set tcName	 [lindex $argv 9]
 set TcOpt	 [lindex $argv 10]
 set fr		 [lindex $argv 11]
+set monitorDelay	[lindex $argv 12]
 
 spawn ssh [lindex $argv 1]@[lindex $argv 0]
 
@@ -26,7 +27,7 @@ expect "yes/no" {
 # we are in the sipp machine now: 
 #Run the analyzer now
 ### 
-expect $prompt {send "nohup ./hpr-clinet-load5/modified_failure_rate.sh $tcName $fr &\r" }
+expect $prompt {send "nohup ./hpr-clinet-load5/modified_failure_rate.sh $tcName $fr $monitorDelay &\r" }
 #Run sipp  with arguments
 expect  $prompt { send "nohup ./hpr-client-load5/modified_run.sh $sippIp $dmaIp $timeInHr $timeInMi $timeInSe $rate $holdTime $tcName $TcOpt &\r" }
 

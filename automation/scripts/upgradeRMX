@@ -1,12 +1,13 @@
 #!/usr/bin/expect
-
 #this is no more valid##Usage sshsudologin.expect <host> <ssh user> <ssh password> <su user> <su password>
+#usage: ./upgradeRmx <host> <ssh user> <ssh password> <build>
 
 set timeout 60
 
 set prompt "polycom> "
 set root "su - root"
 set rootPass "T1TLw@yh@lnut0u"
+set build [lindex $argv 3]
 
 spawn ssh [lindex $argv 1]@[lindex $argv 0]
 
@@ -15,16 +16,30 @@ expect "yes/no" {
 	expect "*?assword" { send "[lindex $argv 2]\r" }
 	} "*?assword" { send "[lindex $argv 2]\r" }
 
+expect $prompt { send  $root\r }
+expect "Password: " { send $rootPass\r }
+expect $prompt { send "/salt/bin/python /tmp/refreshBuild.py -b $build\r" }
+
+interact
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#------------------------Not in use------------ will remove in future
+#expect "Password: " { send "[lindex $argv 4]\r" }
 #expect $prompt { send "su - [lindex $argv 3]\r" }
 #expect $prompt { send scp BuildDownloader.py [lindex $argv 1]@[lindex $argv 0]\r}
-expect $prompt { send  $root\r }
-#expect "Password: " { send "[lindex $argv 4]\r" }
-expect "Password: " { send $rootPass\r }
-expect $prompt { send "/salt/bin/python /tmp/refreshBuild.py\r" }
 #expect $prompt { send "touch /tmp/ok\r" }
 #expect $prompt { send "mount -o remount,rw /data\r" }
 #expect $prompt { send "mv /output/RMX_*.bin /data\r" }
 #expect $prompt { send "ln -sf /data/
-
-
-interact

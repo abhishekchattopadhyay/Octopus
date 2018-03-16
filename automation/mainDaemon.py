@@ -5,6 +5,7 @@ created on March 9, 2018
 @author: achattopadhyay
 this script run infinitely and schedules the jobs
 '''
+
 from __future__ import print_function
 import os
 import sys
@@ -14,11 +15,17 @@ import datetime
 import subprocess
 from sys import argv
 import xml.etree.ElementTree as ET
-runningTests = []
 
-rootDir = './'
+runningTests = []	# this list to hold the running tests
+
+rootDir = './'	# while in production this would change
 
 class test_thread(threading.Thread):
+	'''
+	This class executes the test that is described in the 
+	xml file
+	'''
+
 	def __init__(self, threadID, name, counter, tc):
 		threading.Thread.__init__(self)
 		self.test = tc
@@ -27,21 +34,30 @@ class test_thread(threading.Thread):
 		self.counter = counter
 
 	def run(self):
+		''' 
+		the main thread simply executes the main runner of tests 
+		and feeds the test.xml to the test case
+		all the intrecasies are handled in runTest.py
+		'''
 		print ('working with : ' + self.test)
-		# trigger the runner with a valid argument
 		command = './scripts/runTest.py -f ' + './Tests/scheduled/' + self.test
 		print ('executing command: ' + command)
 		process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		(stdout,stderr) = process.communicate()
+		(stdout,stderr) = process.communicate()	# trigger the runner with a valid argument
 		return
 	
-def getrootdir():
+def getrootdir():	# in production version this should get the root dir for all subsequent scripts
 	pass
 
+'''
+Get all the test cases which are added to the test suite
+validate which tests to schedule
+run the tests on the input files
+'''
 def getscheduledtests():
 	scheduled=[]
 	dir = rootDir + 'Tests/tbd/'
-	tests = os.listdir(dir) # get all tests
+	tests = os.listdir(dir) 			# get all tests
 	#tests = [dir+a for a in tests]
 	print ('INFO: Checking test case files\n',',\n'.join(tests))
 	
@@ -64,38 +80,55 @@ def getscheduledtests():
 		if date == dt and ti == time:
 			print ('This scenario will be added: YES')
 			scheduled.append(tc)
+		elif root.find('SCHEDULE_POLICY') == 'default':
+			print ('This scenario would get scheduled immediately')
+			scheduled.append(tc)
 		else:
 			print ('This scenario will be added: NO')
-
+	print ('All scheduled cases : ', end='')
 	print (scheduled)
-	return (scheduled)
+	return scheduled
+
+'''
+Function moves the scheduled files
+from ROOTDIR/Tests/tbd to ROOTDIR/tests/scheduled
+'''
 def moveFilesToScheduled(tests):
-	print ('moveFilesToScheduled')
 	for item in tests:
 		os.rename(item, './Tests/scheduled/'+item.split('/')[3])
 
-def action():
+def action(): 
+	'''
+	start a thread for each test and 
+	trigger necessary actions in that thread
+	'''
 	dir = './Tests/scheduled/'
-	tests = os.listdir(dir) # get all tests
+	tests = os.listdir(dir) 		# get all tests
 	for item in tests:
-		t = test_thread(0,0,0,item)
-		runningTests.append(t)
-		t.start()
+		t = test_thread(0,0,0,item)	# get a worker thread for each test to be executed
+		runningTests.append(t)		# append the thread in running queue
+		t.start()					# start the thread: here the threads 
+									# somewhere we'll need to join this thread in main thread
 		
 			
 def main():
+	'''
+	in an infinite loop 
+	check for all the tasks added
+	find the once which match the test of schedule or needs immediate scheduling
+	for all the actionable tests run the test case
+	'''
+
 	while(1):
-		# check for scheduled jobs
+		tests = getscheduledtests()	# check for scheduled jobs
 		print ('INFO: Checking for targets in /Tests/tbd/')
-		tests = getscheduledtests()
 		if len(tests) > 0:
-			print ('INFO: tests that needs scheduling: \n', ',\n'.join(tests))
 			moveFilesToScheduled(tests)
-			print ('Now take action on each of the tests')
 		else:
 			print ('INFO: No tests to schedule')
-		action() # for now just run this
-		time.sleep(60) #	run the loop after 1 min looking for more scheduled jobs
+
+		action()					# for now just run this
+		time.sleep(60)				#	run the loop after 1 min looking for more scheduled jobs
 		sys.exit(0)
 	return
 
