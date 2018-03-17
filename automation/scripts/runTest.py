@@ -20,10 +20,10 @@ class test:
 	defination of a test as configured by the user
 	'''
 	def __init__(self,elements):
-		self.name			= 	elements['name']
-		self.durationH		= 	elements['durationH']
-		self.durationM		= 	elements['durationM']
-		self.durationS		= 	elements['durationS']
+		self.name			= 	elements['id']
+		self.durationH		= 	elements['DURATION_H']
+		self.durationM		= 	elements['DURATION_M']
+		self.durationS		= 	elements['DURATION_S']
 		self.rate			=	elements['RATE']
 		self.recurrence		=	elements['RECURRENCE']	
 		self.time			= 	elements['SCHEDULE_TIME']

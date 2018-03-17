@@ -127,12 +127,14 @@ class userTest:
 				ET.SubElement(root, key).text	=	self.user[key]
 	
 			tree	=	ET.ElementTree(root)	
-			tree.write(testFile)	# write the pirmary test xml
-			print ('INFO: ', 'New test case added, filename: ', testFile)
+			
 			if 	self.tcEdit:
 				fileToRemove = self.foundPath + self.user['id'] + '.xml'
 				os.remove(fileToRemove)
 				print ('INFO: ','Removed file: ', fileToRemove)
+			
+			tree.write(testFile)	# write the pirmary test xml
+			print ('INFO: ', 'New test case added, filename: ', testFile)
 		
 		def addToXmlDB():
 			pass
