@@ -1,5 +1,4 @@
 #!/user/bin/python -tt
-""""
 
 import os
 import xml.etree.ElementTree as ET
@@ -92,4 +91,3 @@ def buildavailable(build):
 	else:
 		raise ValueError ('ERROR: Couldnt contact jenkins')
 	return False
-
