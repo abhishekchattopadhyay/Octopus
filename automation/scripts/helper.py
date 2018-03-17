@@ -1,17 +1,19 @@
 #!/user/bin/python -tt
+""""
 
 import os
 import xml.etree.ElementTree as ET
 import requests
 
-BASEDIR = '.'
+BASEDIR 		= '.'
 TestXmlFilePath = BASEDIR + '/Tests/tbd/'
-xmlext = '.xml'
-urlHeader = 'http://10.223.1.88/Carmel-Versions/SVN/Builds/prod/'
-buildVer = '8.7.5'
-buildSubdir = 'trunk'
-buildSuffix = '.bin'
-delem = '/'
+xmlext 			= '.xml'
+urlHeader 		= 'http://10.223.1.88/Carmel-Versions/SVN/Builds/prod/'
+buildVer 		= '8.7.5'
+buildSubdir 	= 'trunk'
+buildSuffix		= '.bin'
+delem 			= '/'
+
 url = urlHeader + buildVer + delem + buildSubdir + delem
 
 def getTestXml(file):
@@ -90,3 +92,4 @@ def buildavailable(build):
 	else:
 		raise ValueError ('ERROR: Couldnt contact jenkins')
 	return False
+

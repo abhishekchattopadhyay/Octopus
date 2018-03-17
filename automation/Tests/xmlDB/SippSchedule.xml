@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SIPP_SCHEDULE>
+	<SIPP ip="0.0.0.0">
+		<SCHED time="0">NO</SCHED>
+		<SCHED time="1">NO</SCHED>
+		<SCHED time="2">NO</SCHED>
+		<SCHED time="3">NO</SCHED>
+		<SCHED time="4">NO</SCHED>
+		<SCHED time="5">NO</SCHED>
+		<SCHED time="6">NO</SCHED>
+		<SCHED time="7">NO</SCHED>
+		<SCHED time="8">NO</SCHED>
+		<SCHED time="9">NO</SCHED>
+		<SCHED time="10">NO</SCHED>
+		<SCHED time="11">NO</SCHED>
+		<SCHED time="12">NO</SCHED>
+		<SCHED time="13">NO</SCHED>
+		<SCHED time="14">NO</SCHED>
+		<SCHED time="15">NO</SCHED>
+		<SCHED time="16">NO</SCHED>
+		<SCHED time="17">NO</SCHED>
+		<SCHED time="18">NO</SCHED>
+		<SCHED time="19">NO</SCHED>
+		<SCHED time="20">NO</SCHED>
+		<SCHED time="21">NO</SCHED>
+		<SCHED time="22">NO</SCHED>
+		<SCHED time="23">NO</SCHED>
+		<SCHED time="24">NO</SCHED>
+	</SIPP>
+</SIPP_SCHEDULE>
