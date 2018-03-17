@@ -54,8 +54,8 @@ def getXmlElem(file):
 	elements['HOLDTIME']	=	root.find('HOLDTIME').text
 	elements['SCHEDULE_TIME']		=	root.find('SCHEDULE_TIME').text
 	elements['SCHEDULE_DATE']		=	root.find('SCHEDULE_DATE').text
-	elements['schd_policy']	=	root.find('SCHEDULE_POLICY').text
-	elements['recurrence']	=	root.find('RECURRENCE').text
+	elements['SCHEDULE_POLICY']	=	root.find('SCHEDULE_POLICY').text
+	elements['RECURRENCE']	=	root.find('RECURRENCE').text
 	elements['RMX_IP']		=	root.find('RMX_IP').text
 	elements['RMX_BUILD']	=	root.find('RMX_BUILD').text
 	elements['RMX_TYPE']		=	root.find('RMX_TYPE').text
@@ -73,7 +73,7 @@ def getXmlElem(file):
 	elements['TEST_TYPE']	=	root.find('TEST_TYPE').text
 	elements['VIDEO_TYPE']	=	root.find('VIDEO_TYPE').text
 	elements['PROTOCOL']	=	root.find('PROTOCOL').text
-	elements['onFailRestart']	=	root.find('ON_FAIL_RESTART').text
+	elements['ON_FAIL_RESTART']	=	root.find('ON_FAIL_RESTART').text
 	elements['EMAILTO']		=	root.find('EMAILTO').text
 	elements['MONITOR_DELAY']=	root.find('MONITOR_DELAY').text
 	#print (elements)

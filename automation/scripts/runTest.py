@@ -25,7 +25,7 @@ class test:
 		self.durationM		= 	elements['durationM']
 		self.durationS		= 	elements['durationS']
 		self.rate			=	elements['RATE']
-		self.recurrence		=	elements['recurrence']	
+		self.recurrence		=	elements['RECURRENCE']	
 		self.time			= 	elements['SCHEDULE_TIME']
 		self.date			= 	elements['SCHEDULE_DATE']
 		self.schd_policy	=	elements['SCHEDULE_POLICY']
