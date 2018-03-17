@@ -1,5 +1,9 @@
 #!/usr/bin/expect
-#this is no more valid##Usage sshsudologin.expect <host> <ssh user> <ssh password> <su user> <su password>
+
+#created on 14th March 2018
+#@author: Abhishek Chattopadhyay
+#FName: upgradeRMX
+#expect script
 #usage: ./upgradeRmx <host> <ssh user> <ssh password> <build>
 
 set timeout 60

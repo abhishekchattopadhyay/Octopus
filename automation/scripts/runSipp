@@ -1,7 +1,11 @@
 #!/usr/bin/expect
 
-#	usage
-#	runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate> <monitor delay>
+
+#created on 14th March 2018
+#@author: Abhishek Chattopadhyay
+#FName: refreshBuild
+#usage	runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate> <monitor delay>
+#expect script
 
 set timeout 60
 set prompt "root@sipp?*"
