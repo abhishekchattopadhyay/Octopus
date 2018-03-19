@@ -66,17 +66,17 @@ class test:
 		return True	
 
 	def runSipp(self):
-		#here we'll have to check if one or two sipp is required
+		# here we will have to check if one or two sipp is required
 		# runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate> <monitor_delay>
 		command = './scripts/runSipp ' + self.Sipp1Ip + ' ' + self.Sipp1Usr + ' ' + self.Sipp1Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.testType + ' ' + self.FR + ' ' + self.monitor_delay + ' ' + '&'
-		print (command)
+		print ('executing: ' ,command)
 		process = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 		(stdout, stderr) = process.communicate()
 		
 		if self.RmxType == 'RMX4000':
 			# we'll need two sipp machines started the 1st instance anyway
 			command = './scripts/runSipp ' + self.Sipp2Ip + ' ' + self.Sipp2Usr + ' ' + self.Sipp2Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.testType + ' ' + self.FR + ' ' + ' ' + self.monitor_delay + ' ' +'&'
-			print (command)
+			print ('executing: ',command)
 			process = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 			(stdout, stderr) = process.communicate()
 		return
@@ -113,15 +113,25 @@ def main(myargs):
 		t1.RmxBuild = 'last'
 		pass
 	elif not helper.buildavailable(t1.RmxBuild):
-		raise ValueError ('ERROR: Bad test case parameters, check: target rmx build')
+		raise ValueError ('ERROR: Bad test case parameters, check requested Rmx build')
 
 	print ('Upgrading RMX\n')
 	if not t1.executeupgrade():	# now upgrade the RMX
 		raise ValueError ('Error: issue with rmx upgrade')
 
-	# we'll wait for 20 mins after this
-	print ('Wait for 20 mins and hold on for the RMX to upgrade')
-	time.sleep(.10)
+	# well wait for some time after upgrade and allow the rmx to come up
+	# 5 mins in case SOFT_MCU_EDGE
+	# 10 min in case of NINJA
+	# 20 mins in case of RMX2000 or RMX4000
+	wt = 0
+	if t1.RmxType == 'SOFT_MCU_EDGE':
+		wt = 5 
+	if t1.RmxType == 'NINJA':
+		wt = 10
+	else:
+		wt = 20
+	print ('Wait for RMX to upgrade: ',wt, ' minutes')
+	time.sleep(wt) #	Okay sleeping
 
 	# now run sipp
 	print ('\n Running Sipp')
@@ -134,6 +144,6 @@ if __name__ == '__main__':
 	myargs = helper.getopts(argv)
 	if '-f' not in myargs:
 		helper.printusage()
-		raise ValueError ('ERROR: Incorrect usage')
+		raise ValueError ('ERROR: Incorrect usage: <scriptName> -f <test file name>')
 	main(myargs)
 	sys.exit(0)
