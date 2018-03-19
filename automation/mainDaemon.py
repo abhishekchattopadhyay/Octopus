@@ -77,10 +77,10 @@ def getscheduledtests():
 		dt = root.find('SCHEDULE_DATE').text
 		ti = (root.find('SCHEDULE_TIME').text).split(':')[0]
 		print ('Scheduled date and time in file is |'+dt+'|', ti + '|  ', end='')
-		if date == dt and ti == time:
+		if (date == dt or date == 'TODAY') and ti == time:
 			print ('This scenario will be added: YES')
 			scheduled.append(tc)
-		elif root.find('SCHEDULE_POLICY') == 'default':
+		elif root.find('SCHEDULE_POLICY') == 'IMMEDIATE':
 			print ('This scenario would get scheduled immediately')
 			scheduled.append(tc)
 		else:
@@ -110,7 +110,6 @@ def action():
 		t.start()					# start the thread: here the threads 
 									# somewhere we'll need to join this thread in main thread
 		
-			
 def main():
 	'''
 	in an infinite loop 
@@ -118,18 +117,19 @@ def main():
 	find the once which match the test of schedule or needs immediate scheduling
 	for all the actionable tests run the test case
 	'''
-
+	# start a thread which moves test cases from running to completed
+	
 	while(1):
 		tests = getscheduledtests()	# check for scheduled jobs
 		print ('INFO: Checking for targets in /Tests/tbd/')
 		if len(tests) > 0:
 			moveFilesToScheduled(tests)
+			action()					# for now just run this
 		else:
 			print ('INFO: No tests to schedule')
 
-		action()					# for now just run this
 		time.sleep(60)				#	run the loop after 1 min looking for more scheduled jobs
-		sys.exit(0)
+		sys.exit(0)					#   in production ths line should be taken down
 	return
 
 if __name__ == '__main__':

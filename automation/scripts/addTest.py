@@ -67,7 +67,7 @@ class userTest:
 				getInp (self.user,'SCHEDULE_POLICY','Schedule Policy: ')
 				
 				if int(self.user['SCHEDULE_TIME']) == 0:
-					self.user['SCHEDULE_POLICY']	= 'immediate'
+					self.user['SCHEDULE_POLICY']	= 'IMMEDIATE'
 					print ('INFO: Test case schedule is: ',self.user['SCHEDULE_POLICY'])
 
 				getInp (self.user, 'RECURRENCE','Recurrence:(HINT: [yes/no]): ')
