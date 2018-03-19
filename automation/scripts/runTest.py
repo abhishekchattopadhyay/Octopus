@@ -56,7 +56,7 @@ class test:
 		upgradeRMX is an expect based script which 
 		upgrades all RMXs based on the target version provided
 		'''
-		command = './scripts/upgradeRMX ' +  self.RmxIp + ' ' + self.RmxUser + ' ' + self.RmxPass + ' ' + self.RmxBuild
+		command = './scripts/upgradeRMX ' +  self.RmxIp + ' ' + self.RmxUser + ' ' + self.RmxPass + ' ' + helper.getDownloadPath(elements) + ' ' + helper.getExactBuildName(elements)
 		print (command)
 		process = subprocess.Popen(command, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		(stdout, stderr) = process.communicate()
@@ -92,7 +92,7 @@ def main(myargs):
 	os.rename(testFile, file)	# This would move the file from ROOTDIR/Tests/scheduled/ to ROOTDIR/Tests/running/
 	testFile = file
 
-	testFile = helper.getTestXml(testFile)
+	#testFile = helper.getTestXml(testFile)
 	t1 = test(helper.getXmlElem(testFile)) #	t1 now has all the user details
 	
 	attrs = vars(t1) 
@@ -110,6 +110,7 @@ def main(myargs):
 
 	if t1.RmxBuild == 'DEFAULT':
 		print ("Rmx Build default: Latest")
+		t1.RmxBuild = 'last'
 		pass
 	elif not helper.buildavailable(t1.RmxBuild):
 		raise ValueError ('ERROR: Bad test case parameters, check: target rmx build')

@@ -116,6 +116,42 @@ class userTest:
 
 		def validate(self):	#	function validates all the inputs by user
 			result	=	True
+			print ('Let me quickly check the inputs')
+			print ('INFO: ','Checking build')
+			if self.user['RMX_BUILD'] == 'default' or helper.buildavailable(self.user['RMX_BUILD']):
+				print ('Build choice is fine')
+			else:
+				result = result & False
+				
+			print ('INFO: Checking if I can reach RMX IP')
+			output = subprocess.Popen(['ping', '-c','4',self.user['RMX_IP']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
+			if "Destination host unreachable" in output.decode('utf-8'):
+				print ("{} is offline".format(self.user['RMX_IP']))
+				result = result & False
+			else:
+				print ('RMX Rechable')
+				
+			print ('INFO: Checking if I can reach the SIPP machine: ',self.user['SIPP_PRIMARY'] )
+			output = subprocess.Popen(['ping', '-c','4',self.user['SIPP_PRIMARY']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
+			if "Destination host unreachable" in output.decode('utf-8'):
+				print ("{} is offline".format(self.user['SIPP_PRIMARY']))
+				result = result & False
+			else:
+				print  ('SIPP Rechable')
+
+			if self.user['RMX_TYPE'] == 'RMX4000':
+				print ('INFO: Checking is I can reach the 2nd SIPP machine:', self.user['SIPP_SECONDARY'])
+				output = subprocess.Popen(['ping', '-c','4',self.user['SIPP_SECONDARY']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
+				if "Destination host unreachable" in output.decode('utf-8'):
+					print ("{} is offline".format(self.user['SIPP_SECONDARY']))
+					result = result & False
+				else:
+					print ('SIPP Rechable')
+
+			if result == True:
+				print ('All Good adding test case now')
+			else:
+				print ('one or more errors')
 			return result
 				
 		def addTest(self):	#	function adds the test case to the be scheduled
@@ -145,7 +181,8 @@ def main(elements):
 	print ('Add A TestCase to Execute')
 	Print ('INFO',elements)
 	test = userTest(elements)
-	test.addTest()
+	if test.validate() == True:
+		test.addTest()
 			
 if __name__ == '__main__':
 	sys.dont_write_bytecode = True

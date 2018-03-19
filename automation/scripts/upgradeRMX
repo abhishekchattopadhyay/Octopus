@@ -4,14 +4,16 @@
 #@author: Abhishek Chattopadhyay
 #FName: upgradeRMX
 #expect script
-#usage: ./upgradeRmx <host> <ssh user> <ssh password> <build>
+#usage: ./upgradeRmx <host> <ssh user> <ssh password> <url> <build> <path>
 
 set timeout 60
 
 set prompt "polycom> "
 set root "su - root"
 set rootPass "T1TLw@yh@lnut0u"
-set build [lindex $argv 3]
+set url [lindex $argv 3]
+set path  [lindex $argv 5]
+set build [lindex $argv 4]
 
 spawn ssh [lindex $argv 1]@[lindex $argv 0]
 
@@ -22,7 +24,10 @@ expect "yes/no" {
 
 expect $prompt { send  $root\r }
 expect "Password: " { send $rootPass\r }
-expect $prompt { send "/salt/bin/python /tmp/refreshBuild.py -b $build\r" }
+expect $prompt { send "mount -o remount,rw /data\r" }
+expect $prompt { send "cd /data\r" }
+expect $prompt { send "ln -sf $build current\r" }
+expect $prompt { send "wget $url -P /data/; reboot\r" }
 
 interact
 

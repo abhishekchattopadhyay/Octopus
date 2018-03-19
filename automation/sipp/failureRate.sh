@@ -1,5 +1,4 @@
-# usage ./failureRate.sh <scenarioName> <failureRate>
-delay=$3
+# usage ./failureRate.sh <scenarioName> <failureRate> <delay>
 sleep $3
 fileToCheck=${1}.csv
 pass=0

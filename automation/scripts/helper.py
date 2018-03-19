@@ -8,12 +8,13 @@ BASEDIR 		= '.'
 TestXmlFilePath = BASEDIR + '/Tests/tbd/'
 xmlext 			= '.xml'
 urlHeader 		= 'http://10.223.1.88/Carmel-Versions/SVN/Builds/prod/'
-buildVer 		= '8.7.5'
+buildStream		= ''
+buildVer		= '8.7.5'
 buildSubdir 	= 'trunk'
 buildSuffix		= '.bin'
 delem 			= '/'
 
-url = urlHeader + buildVer + delem + buildSubdir + delem
+#url = urlHeader + buildVer + delem + buildSubdir + delem
 
 def getTestXml(file):
 	print( TestXmlFilePath + file + xmlext)
@@ -79,11 +80,33 @@ def getXmlElem(file):
 	#print (elements)
 	return elements
 
+def getDownloadPath(testDetail):
+	global buildStream 
+	global url
+	build = testDetail['RMX_BUILD']
+	buildStream = '.'.join(build.split('_')[1].split('.')[:3])
+	if testDetail['RMX_TYPE'] in ['RMX4000','RMX2000']:
+		url = urlHeader + buildStream + delem + buildSubdir + delem + build + '.bin'
+	elif testDetail['RMX_TYPE'] == 'NINJA':
+		url = urlHeader + buildStream + delem + buildSubdir + delem + 'RPCS1800_'+ build + '.bin'
+	return url
+
+def getExactBuildName(testDetail):
+	if testDetail['RMX_TYPE'] == 'NINJA':
+		return 'RPCS1800'_+testDetail['RMX_BUILD']+'.bin'
+	elif testDetail['RMX_TYPE'] in ['RMX4000', 'RMX2000']:
+		return testDetail['RMX_BUILD'] + '.bin'
+	else:
+		raise ValueError('Some issue with identification of rmx build:[HELPER]')
+
 def buildavailable(build):
 	global url
-	url1 = url + build + delem + 'BL_names.txt'
-	print (url1)
-	resp = requests.get(url1)
+	global buildStream
+	# the build input would be in format RMX_8.7.5.351
+	buildStream = '.'.join(build.split('_')[1].split('.')[:3])
+	url = urlHeader + buildStream + delem + buildSubdir + delem + 'BL_names.txt'
+	print (url)
+	resp = requests.get(url)
 	if resp.status_code == 200:
 		buildName = resp.text.split('\n')[0].split('=')[1].strip(' ')
 		if buildName == build:
