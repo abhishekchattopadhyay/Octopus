@@ -11,12 +11,14 @@ import os
 import sys
 import subprocess
 import datetime
+import time
 import xml.etree.ElementTree as ET
 
 BASEDIR		=	'.'
 _template	=	BASEDIR +	'/xml/templates/testtemplate.xml'
 optDir		=	BASEDIR +	'/xml/options/'
 testDir		=	BASEDIR	+	'/Tests/tbd/'
+tempDir		=	BASEDIR +	'/Tests/temp/'
 runningDir	=	BASEDIR	+	'/Tests/running/'
 completedDir=	BASEDIR	+	'/Tests/completed/'
 scheduledDir=	BASEDIR	+	'/Tests/scheduled/'
@@ -28,6 +30,10 @@ def Print(level,statement):
 		print (level+':',statement)
 
 def inputMsg(msg1, msg2):
+	if type(msg1) is int:
+		msg1 = str(msg1)
+	if type(msg2) is int:
+		msg2 = str(msg2)
 	return '['+msg1+'] '+msg2
 
 def getInp(item,tag, msg):
@@ -64,6 +70,9 @@ class userTest:
 					
 				getInp (self.user,'SCHEDULE_TIME','Schedule Time: [enter 0 to immediately schedule]')
 				getInp (self.user,'SCHEDULE_DATE','Schedule Date:(HINT: DD-MM-YYYY): ')
+				if self.user['SCHEDULE_DATE'] == 'TODAY':
+					self.user['SCHEDULE_DATE'] = datetime.datetime.now().strftime("%d-%m-%Y")
+
 				getInp (self.user,'SCHEDULE_POLICY','Schedule Policy: ')
 				
 				if int(self.user['SCHEDULE_TIME']) == 0:
@@ -79,31 +88,88 @@ class userTest:
 				getInp (self.user,'RMX_IP',"RMX IP: ")
 				getInp (self.user,'RMX_TYPE',"Rmx Type: ")
 				getInp (self.user,'RMX_BUILD', 'Rmx Build: (ex: RMX_8.7.5.499): ')
-				getInp (self.user,'RMX_USER','Rmx ssh user name: ')
-				getInp (self.user,'RMX_PASS','Rmx ssh password: ')
-				getInp (self.user,'RMX_SU_PASS','Rmx super user password:')
 				getInp (self.user,'DMA_IP', "DMA IP: ")
+				getInp (self.user,'CPS',"Calls Per Second: ")
+				getInp (self.user,'PROTOCOL',"Protocol: ")
+				getInp (self.user,'FR',"Failure Rate:(HINT:% failure to monitor): ")
 				getInp (self.user,'SIPP_PRIMARY',"primary Sipp IP: ")
 				getInp (self.user,'SIPP_PRI_USR',"primary Sipp ssh user: ")
 				getInp (self.user,'SIPP_PRI_PASS',"primary Sipp ssh password: ")
-				getInp (self.user,'SIPP_SECONDARY',"secondary Sipp IP: ")
-				getInp (self.user,'SIPP_SEC_USR',"secondary Sipp ssh user: ")
-				getInp (self.user,'SIPP_SEC_PASS',"secondary Sipp ssh passowrd: ")
-				getInp (self.user,'TEST_TYPE',"Test Type: ")
-				getInp (self.user,'VIDEO_TYPE',"Video Type: ")
-				getInp (self.user,'PROTOCOL',"Protocol: ")
-				getInp (self.user,'RATE',"Rate:(HINT: This the same rate calculation you did in sipp scripts): ")
-				getInp (self.user,'HOLDTIME',"Hold Time: ")
-				getInp (self.user,'MONITOR_DELAY',"Monitor delay:(HINT: This is the time in minute the failure rate checked would wait feore starting to monitor your sipp load stats): ")
-				getInp (self.user,'FR',"Failure Rate:(HINT:% failure to monitor): ")
-				getInp (self.user,'ON_FAIL_RESTART','yes/ no: ') 		# not allowed now
-				getInp (self.user,'EMAILTO','email: ')	# not allowed now
+				if self.user['RMX_TYPE'] == 'RMX4000':
+					getInp (self.user,'SIPP_SECONDARY',"secondary Sipp IP: ")
+					getInp (self.user,'SIPP_SEC_USR',"secondary Sipp ssh user: ")
+					getInp (self.user,'SIPP_SEC_PASS',"secondary Sipp ssh passowrd: ")
+
+				advancedConfig = False
+
+				print ('INFO: Based on your inputs further parameters are autocalculated:')
+				print ('RMX ssh User: ', self.user['RMX_USER'])
+				print ('RMX ssh password: ', self.user['RMX_PASS'])
+				print ('RMX su password: ', self.user['RMX_SU_PASS'])
+				print ('Video Type: ', self.user['VIDEO_TYPE'])
+
+				# calculate rate & loading factor
+				if self.user['CPS'] == '2':
+					self.user['RATE'] = 2000
+					self.user['LOADING'] = 75
+				elif self.user['CPS'] ==	'5':
+					self.user['RATE'] = 5000
+					self.user['LOADING'] = 60
+				print ('RATE: ', self.user['RATE'])
+				print ('LOADING %: ', self.user['LOADING'])
+
+				# calculate ports & monitor delay
+				if self.user['RMX_TYPE'] == 'RMX4000':
+					self.user['MAX_PORTS'] = 400
+					self.user['MONITOR_DELAY'] = 15
+				elif self.user['RMX_TYPE'] == 'RMX2000':
+					self.user['MAX_PORTS'] = 200
+					self.user['MONITOR_DELAY'] = 15
+				elif self.user['RMX_TYPE'] == 'NINJA':
+					self.user['MAX_PORTS'] = 100
+					self.user['MONITOR_DELAY'] = 10
+				print ('MAX PORTS: ', self.user['MAX_PORTS'])
+				print ('Monitor Delay: ', self.user['MONITOR_DELAY'])
+
+				#	calculate hold time
+				#	Calculation of media quality multiplier (1 for HD, 2 for CIF and SD, 3 for AUDIO ONLY
+				if self.user['VIDEO_TYPE'] in ['CIF','SD']:
+					MQFactor = 	2
+				elif self.user['VIDEO_TYPE'] == 'HD':
+					MQFactor = 1
+				else:
+					MQFactor = 3
+				
+				# the hold time is derived by ((MQFactor * Loading Factor * Ports)/(Rate))*10   this value would be in mil secs
+				# rate is in thousand calls factor
+				# loading factor is actually a percentage : So multiplicative facor becomes 10
+				print (MQFactor, self.user['LOADING'], self.user['MAX_PORTS'], self.user['RATE'])
+				print (type(MQFactor), type(self.user['LOADING']), type(self.user['MAX_PORTS']), type(self.user['RATE']))
+				holdTime = (MQFactor * self.user['LOADING'] * self.user['MAX_PORTS'] * 10 )/(self.user['RATE'])
+				self.user['HOLDTIME'] = holdTime
+				print ('HoldTime: ', self.user['HOLDTIME'])
+
+
+				advancedConfig = raw_input ('If you want to Overwrite the autocalculated parameters enter (YES)')
+
+				if advancedConfig == 'YES':
+					getInp (self.user,'RMX_USER','Rmx ssh user name: ')
+					getInp (self.user,'RMX_PASS','Rmx ssh password: ')
+					getInp (self.user,'RMX_SU_PASS','Rmx super user password:')
+					getInp (self.user,'VIDEO_TYPE',"Video Type: ")
+					getInp (self.user,'LOADING','%age loading of RMX: ')
+					getInp (self.user,'RATE',"Rate: ")
+					getInp (self.user,'HOLDTIME',"Hold Time: ")
+					getInp (self.user,'MONITOR_DELAY',"Monitor delay:(HINT: This is the time in minute the failure rate checked would wait feore starting to monitor your sipp load stats): ")
+					getInp (self.user,'ON_FAIL_RESTART','On Fail Restart? (yes/ no): ') 		# not allowed now
+					getInp (self.user,'EMAILTO','email: ')	# not allowed now
+
 				Print ('INFO',self.user)
 				#return self.user
 
 		def validateName(self,name):
 		#	Check name of test case for uniqueness
-			paths = [testDir, scheduledDir, completedDir]
+			paths = [testDir, scheduledDir, completedDir, tempDir]
 			for path in paths:
 				if name+'.xml' in os.listdir(path):
 					self.foundPath =  path
@@ -117,23 +183,31 @@ class userTest:
 		def validate(self):	#	function validates all the inputs by user
 			result	=	True
 			print ('Let me quickly check the inputs')
-			print ('INFO: ','Checking build')
-			if self.user['RMX_BUILD'] == 'default' or helper.buildavailable(self.user['RMX_BUILD']):
+			print ('INFO: ','Checking build: ', end='')
+			if helper.buildavailable(self.user['RMX_BUILD']):
 				print ('Build choice is fine')
 			else:
 				result = result & False
 				
-			print ('INFO: Checking if I can reach RMX IP')
-			output = subprocess.Popen(['ping', '-c','4',self.user['RMX_IP']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
-			if "Destination host unreachable" in output.decode('utf-8'):
-				print ("{} is offline".format(self.user['RMX_IP']))
-				result = result & False
-			else:
-				print ('RMX Rechable')
+			print ('INFO: Checking if I can reach RMX IP: ',self.user['RMX_IP'], end='')
+			t_time = time.time()
+			while(time.time() < t_time + 2):
+				output = subprocess.Popen(['ping','-c','4',self.user['RMX_IP']],shell=True,stdout=subprocess.PIPE).communicate()[0]
+				print (output)
+				if "Destination host unreachable" in output.decode('utf-8') or 'ping: unknown' in output.decode('utf-8'):
+					print ("{} is offline".format(self.user['RMX_IP']))
+					result = result & False
+				else:
+					print ('RMX Rechable')
 				
 			print ('INFO: Checking if I can reach the SIPP machine: ',self.user['SIPP_PRIMARY'] )
-			output = subprocess.Popen(['ping', '-c','4',self.user['SIPP_PRIMARY']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
-			if "Destination host unreachable" in output.decode('utf-8'):
+			output = subprocess.Popen(
+					['ping', '-c','2',self.user['SIPP_PRIMARY']],
+					shell=True,
+					stdout=subprocess.PIPE,
+					stderr=subprocess.PIPE).communicate()[0]
+			#if "Destination host unreachable" in output.decode('utf-8'):
+			if "Destination host unreachable" in output.decode('utf-8') or 'ping: unknown' in output.decode('utf-8'):
 				print ("{} is offline".format(self.user['SIPP_PRIMARY']))
 				result = result & False
 			else:
@@ -142,7 +216,8 @@ class userTest:
 			if self.user['RMX_TYPE'] == 'RMX4000':
 				print ('INFO: Checking is I can reach the 2nd SIPP machine:', self.user['SIPP_SECONDARY'])
 				output = subprocess.Popen(['ping', '-c','4',self.user['SIPP_SECONDARY']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
-				if "Destination host unreachable" in output.decode('utf-8'):
+				#if "Destination host unreachable" in output.decode('utf-8'):
+				if "Destination host unreachable" in output.decode('utf-8') or 'ping: unknown' in output.decode('utf-8'):
 					print ("{} is offline".format(self.user['SIPP_SECONDARY']))
 					result = result & False
 				else:
@@ -154,12 +229,21 @@ class userTest:
 				print ('one or more errors')
 			return result
 				
-		def addTest(self):	#	function adds the test case to the be scheduled
-			testFile = testDir + self.user['id'] + '.xml'
+		def addTest(self,isValid):	#	function adds the test case to the be scheduled
+			if isValid:
+				testFile = testDir + self.user['id'] + '.xml'
+			else:	#	If the validation fails then save the file in a temp dir
+				testFile = tempDir + self.user['id'] + '.xml'
+			print (testFile)
+
 			root	=	ET.Element('TEST')
+
 			for key in self.user.keys():			#	Create the test XML
+				print (key, self.user[key])
 				if key == 'id':					#	id tag it's a root element
 					root.attrib[key]	=	self.user['id']
+				if type(self.user[key]) is int:
+						self.user[key] = str(self.user[key])
 				ET.SubElement(root, key).text	=	self.user[key]
 	
 			tree	=	ET.ElementTree(root)	
@@ -176,13 +260,12 @@ class userTest:
 			pass
 			
 			
-			
 def main(elements):
 	print ('Add A TestCase to Execute')
 	Print ('INFO',elements)
 	test = userTest(elements)
-	if test.validate() == True:
-		test.addTest()
+	test.addTest(test.validate())
+		
 			
 if __name__ == '__main__':
 	sys.dont_write_bytecode = True

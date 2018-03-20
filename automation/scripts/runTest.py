@@ -42,21 +42,23 @@ class test:
 		self.Sipp2Ip		=	elements['SIPP_SECONDARY']
 		self.Sipp2Usr		=	elements['SIPP_SEC_USR']
 		self.Sipp2Pass		=	elements['SIPP_SEC_PASS']
-		self.testType		=	elements['TEST_TYPE']
+		self.cps			=	elements['CPS']
 		self.videoType		=	elements['VIDEO_TYPE']
 		self.protocol		=	elements['PROTOCOL']
 		self.FR				=	elements['FR']
 		self.holdTime		=	elements['HOLDTIME']
 		self.onFailRestart	=	elements['ON_FAIL_RESTART']
 		self.emailTo		=	elements['EMAILTO']
-		self.monitor_delay	=	elements['MONITOR_DEALY']
+		self.monitor_delay	=	elements['MONITOR_DELAY']
+		self.loading		=	elements['LOADING']
+		self.maxPort		=	elements['MAX_PORTS']
 
 	def executeupgrade(self):
 		'''
 		upgradeRMX is an expect based script which 
 		upgrades all RMXs based on the target version provided
 		'''
-		command = './scripts/upgradeRMX ' +  self.RmxIp + ' ' + self.RmxUser + ' ' + self.RmxPass + ' ' + helper.getDownloadPath(elements) + ' ' + helper.getExactBuildName(elements)
+		command = './scripts/upgradeRMX ' +  self.RmxIp + ' ' + self.RmxUser + ' ' + self.RmxPass + ' ' + helper.getDownloadPath(self.RmxBuild, self.RmxType) + ' ' + helper.getExactBuildName(self.RmxBuild, self.RmxType)
 		print (command)
 		process = subprocess.Popen(command, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		(stdout, stderr) = process.communicate()

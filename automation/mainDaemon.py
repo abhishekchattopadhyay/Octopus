@@ -77,10 +77,12 @@ def getscheduledtests():
 		dt = root.find('SCHEDULE_DATE').text
 		ti = (root.find('SCHEDULE_TIME').text).split(':')[0]
 		print ('Scheduled date and time in file is |'+dt+'|', ti + '|  ', end='')
+		policy = root.find('SCHEDULE_POLICY')
+		print (policy)
 		if (date == dt or date == 'TODAY') and ti == time:
 			print ('This scenario will be added: YES')
 			scheduled.append(tc)
-		elif root.find('SCHEDULE_POLICY') == 'IMMEDIATE':
+		elif root.find('SCHEDULE_POLICY').text == 'IMMEDIATE':
 			print ('This scenario would get scheduled immediately')
 			scheduled.append(tc)
 		else:
