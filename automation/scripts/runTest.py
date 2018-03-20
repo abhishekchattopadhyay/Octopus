@@ -32,6 +32,7 @@ class test:
 		self.RmxIp			= 	elements['RMX_IP']
 		self.RmxType		=	elements['RMX_TYPE']
 		self.RmxBuild		= 	elements['RMX_BUILD']
+		self.Release		=	elements['RELEASE']
 		self.RmxUser		=	elements['RMX_USER']
 		self.RmxPass		=	elements['RMX_PASS']
 		self.RmxSuPass		=	elements['RMX_SU_PASS']
@@ -75,7 +76,7 @@ class test:
 		process = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 		(stdout, stderr) = process.communicate()
 		
-		if self.RmxType == 'RMX4000':
+		if (self.RmxType).lower() == 'rmx4000':
 			# we'll need two sipp machines started the 1st instance anyway
 			command = './scripts/runSipp ' + self.Sipp2Ip + ' ' + self.Sipp2Usr + ' ' + self.Sipp2Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.testType + ' ' + self.FR + ' ' + ' ' + self.monitor_delay + ' ' +'&'
 			print ('executing: ',command)
@@ -126,9 +127,9 @@ def main(myargs):
 	# 10 min in case of NINJA
 	# 20 mins in case of RMX2000 or RMX4000
 	wt = 0
-	if t1.RmxType == 'SOFT_MCU_EDGE':
+	if (t1.RmxType).lower() == 'soft_mcu_edge':
 		wt = 5 
-	if t1.RmxType == 'NINJA':
+	if (t1.RmxType).lower() == 'ninja':
 		wt = 10
 	else:
 		wt = 20

@@ -48,6 +48,7 @@ class userTest:
 			self.tcEdit = False
 			self.foundPath = ''
 			self.user =	elements
+			self.codeLineup = ''
 			self.getInput()
 			return
 		
@@ -87,7 +88,13 @@ class userTest:
 
 				getInp (self.user,'RMX_IP',"RMX IP: ")
 				getInp (self.user,'RMX_TYPE',"Rmx Type: ")
-				getInp (self.user,'RMX_BUILD', 'Rmx Build: (ex: RMX_8.7.5.499): ')
+				
+				#	get the build lineup
+				#self.codeLineup = raw_input("Pick your code line (8.7.5, 8.7.4, 8.5.13, 8.5.21): ")
+				getInp (self.user,'RELEASE','(8.7.5, 8.7.4, 8.5.13, 8.5.21)')
+				self.user['RMX_BUILD'] = helper.getLatestBuild(self.user['RELEASE'])
+				 
+				getInp (self.user,'RMX_BUILD', 'Rmx Build: ')
 				getInp (self.user,'DMA_IP', "DMA IP: ")
 				getInp (self.user,'CPS',"Calls Per Second: ")
 				getInp (self.user,'PROTOCOL',"Protocol: ")
@@ -95,7 +102,7 @@ class userTest:
 				getInp (self.user,'SIPP_PRIMARY',"primary Sipp IP: ")
 				getInp (self.user,'SIPP_PRI_USR',"primary Sipp ssh user: ")
 				getInp (self.user,'SIPP_PRI_PASS',"primary Sipp ssh password: ")
-				if self.user['RMX_TYPE'] == 'RMX4000':
+				if (self.user['RMX_TYPE']).lower() == 'rmx4000':
 					getInp (self.user,'SIPP_SECONDARY',"secondary Sipp IP: ")
 					getInp (self.user,'SIPP_SEC_USR',"secondary Sipp ssh user: ")
 					getInp (self.user,'SIPP_SEC_PASS',"secondary Sipp ssh passowrd: ")
@@ -119,13 +126,13 @@ class userTest:
 				print ('LOADING %: ', self.user['LOADING'])
 
 				# calculate ports & monitor delay
-				if self.user['RMX_TYPE'] == 'RMX4000':
+				if (self.user['RMX_TYPE']).lower() == 'rmx4000':
 					self.user['MAX_PORTS'] = 400
 					self.user['MONITOR_DELAY'] = 15
-				elif self.user['RMX_TYPE'] == 'RMX2000':
+				elif (self.user['RMX_TYPE']).lower() == 'rmx2000':
 					self.user['MAX_PORTS'] = 200
 					self.user['MONITOR_DELAY'] = 15
-				elif self.user['RMX_TYPE'] == 'NINJA':
+				elif (self.user['RMX_TYPE']).lower() == 'ninja':
 					self.user['MAX_PORTS'] = 100
 					self.user['MONITOR_DELAY'] = 10
 				print ('MAX PORTS: ', self.user['MAX_PORTS'])
@@ -189,40 +196,43 @@ class userTest:
 			else:
 				result = result & False
 				
+			'''command = 'ping -c 4 '
+			errors = ['100% packet loss','unknown','unreachable']
 			print ('INFO: Checking if I can reach RMX IP: ',self.user['RMX_IP'], end='')
-			t_time = time.time()
-			while(time.time() < t_time + 2):
-				output = subprocess.Popen(['ping','-c','4',self.user['RMX_IP']],shell=True,stdout=subprocess.PIPE).communicate()[0]
-				print (output)
-				if "Destination host unreachable" in output.decode('utf-8') or 'ping: unknown' in output.decode('utf-8'):
-					print ("{} is offline".format(self.user['RMX_IP']))
-					result = result & False
-				else:
-					print ('RMX Rechable')
+			output = subprocess.Popen(
+				[command + self.user['RMX_IP']],
+				shell=True,
+				stdout=subprocess.PIPE).communicate()[0]
+			print (output)
+			#if ("Destination host unreachable" in output) or ('unknown' in output):
+			print ([i for i in errors if i in output])
+			if [i for i in errors if i in output.decode('utf-8')]:
+				print ("{} is offline".format(self.user['RMX_IP']))
+				result = result & False
+			else:
+				print (' : RMX Rechable')
 				
 			print ('INFO: Checking if I can reach the SIPP machine: ',self.user['SIPP_PRIMARY'] )
 			output = subprocess.Popen(
-					['ping', '-c','2',self.user['SIPP_PRIMARY']],
+					[command + self.user['SIPP_PRIMARY']],
 					shell=True,
 					stdout=subprocess.PIPE,
-					stderr=subprocess.PIPE).communicate()[0]
-			#if "Destination host unreachable" in output.decode('utf-8'):
-			if "Destination host unreachable" in output.decode('utf-8') or 'ping: unknown' in output.decode('utf-8'):
+					).communicate()[0]
+			if "Destination host unreachable" in output.decode('utf-8') or 'unknown' in output.decode('utf-8'):
 				print ("{} is offline".format(self.user['SIPP_PRIMARY']))
 				result = result & False
 			else:
-				print  ('SIPP Rechable')
+				print  (' : SIPP Rechable')
 
-			if self.user['RMX_TYPE'] == 'RMX4000':
+			if (self.user['RMX_TYPE']).lower() == 'rmx4000':
 				print ('INFO: Checking is I can reach the 2nd SIPP machine:', self.user['SIPP_SECONDARY'])
-				output = subprocess.Popen(['ping', '-c','4',self.user['SIPP_SECONDARY']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
-				#if "Destination host unreachable" in output.decode('utf-8'):
-				if "Destination host unreachable" in output.decode('utf-8') or 'ping: unknown' in output.decode('utf-8'):
+				output = subprocess.Popen([command + self.user['SIPP_SECONDARY']],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
+				if "Destination host unreachable" in output.decode('utf-8') or 'unknown' in output.decode('utf-8'):
 					print ("{} is offline".format(self.user['SIPP_SECONDARY']))
 					result = result & False
 				else:
 					print ('SIPP Rechable')
-
+			'''
 			if result == True:
 				print ('All Good adding test case now')
 			else:
@@ -239,7 +249,7 @@ class userTest:
 			root	=	ET.Element('TEST')
 
 			for key in self.user.keys():			#	Create the test XML
-				print (key, self.user[key])
+				#print (key, self.user[key])
 				if key == 'id':					#	id tag it's a root element
 					root.attrib[key]	=	self.user['id']
 				if type(self.user[key]) is int:

@@ -58,6 +58,7 @@ def getXmlElem(file):
 	elements['SCHEDULE_POLICY']	=	root.find('SCHEDULE_POLICY').text
 	elements['RMX_IP']			=	root.find('RMX_IP').text
 	elements['RMX_BUILD']		=	root.find('RMX_BUILD').text
+	elements['RELEASE']			=	root.find('RELEASE').text
 	elements['RMX_TYPE']		=	root.find('RMX_TYPE').text
 	elements['RMX_USER']		=	root.find('RMX_USER').text
 	elements['RMX_PASS']		=	root.find('RMX_PASS').text
@@ -86,16 +87,16 @@ def getDownloadPath(RmxBuild,RmxType):
 	global buildStream 
 	global url
 	buildStream = '.'.join(RmxBuild.split('_')[1].split('.')[:3])
-	if RmxType in ['RMX4000','RMX2000']:
+	if RmxType.lower() in ['rmx4000','rmx2000']:
 		url = urlHeader + buildStream + delem + buildSubdir + delem + RmxBuild + delem + RmxBuild + '.bin'
-	elif RmxType == 'NINJA':
+	elif RmxType.lower() == 'ninja':
 		url = urlHeader + buildStream + delem + buildSubdir + delem + RmxBuild + delem + 'RPCS1800_'+ build + '.bin'
 	return url
 
 def getExactBuildName(RmxBuild,RmxType):
-	if RmxType == 'NINJA':
+	if RmxType.lower() == 'ninja':
 		return 'RPCS1800_' + RmxBuild +'.bin'
-	elif RmxType in ['RMX4000', 'RMX2000']:
+	elif RmxType.lower() in ['rmx4000', 'rmx2000']:
 		return RmxBuild + '.bin'
 	else:
 		raise ValueError('Some issue with identification of rmx build:[HELPER]')
@@ -106,7 +107,6 @@ def buildavailable(build):
 	# the build input would be in format RMX_8.7.5.351
 	buildStream = '.'.join(build.split('_')[1].split('.')[:3])
 	url = urlHeader + buildStream + delem + buildSubdir + delem + build + delem +'BL_names.txt'
-	print (url)
 	resp = requests.get(url)
 	if resp.status_code == 200:
 		buildName = resp.text.split('\n')[0].split('=')[1].strip(' ')
@@ -115,3 +115,16 @@ def buildavailable(build):
 	#else:
 	#	raise ValueError ('ERROR: Couldnt contact jenkins')
 	return False
+
+def getLatestBuild(codeLineup):
+	os.system('clear')
+	os.system('cls')
+	global url
+	url = urlHeader + codeLineup + delem +	buildSubdir + delem + 'last/BL_names.txt'
+	resp = requests.get(url)
+	if resp.status_code == 200:
+		buildName = resp.text.split('\n')[0].split('=')[1].strip(' ')
+		return buildName
+	else:
+		return 'INVALID'
+		
