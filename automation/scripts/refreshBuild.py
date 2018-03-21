@@ -5,7 +5,6 @@ created on 14th March 2018
 FName: refreshBuild
 '''
 
-import os
 import sys
 import urllib
 import requests
@@ -42,7 +41,7 @@ def gotSpace():
 	arg2 =  '/output'
 	diskLeft = 1
 	process = subprocess.Popen([command, arg2], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 	if process.returncode != 0:
 		print ('Error: couldnt find space left')
 	else:
@@ -52,7 +51,7 @@ def gotSpace():
 		diskLeft = op[2]
 	if float(diskLeft)/(1024*1024) < minSpace:
 		spaceLeft = False
-                # place for generating faults
+		# place for generating faults
 	return spaceLeft
 
 def determinelatestbuild():
@@ -88,7 +87,7 @@ def main(myargs):
 
 	#determine rmxType
 	process = subprocess.Popen('cat /opt/mcu/mcms/ProductType',shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	(stdout,stderr) = process.communicate()
+	stdout = process.communicate()
 	try:
 		rmxType = stdout.split('\n')[0]
 	except:
@@ -158,31 +157,31 @@ def main(myargs):
 	
 	#remount the partition
 	process = subprocess.Popen('mount -o remount,rw /data', shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 	if process.returncode != 0:
 		print ('ERROR: couldnt remount /data as rw')
 	else:
 		print ('SUCCESS: remount /data as rw')
 		
 	process = subprocess.Popen('ll /data', shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 	print (stdout)
 	
 	# move the build to the right partition
 	process = subprocess.Popen('mv ' + downloadFilePath+ ' /data/', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 	if process.returncode != 0:
 		print ('ERROR:	couldnt move downloaded .bin file to /data')
 	else:
 		print ('SUCCESS: moved .bin to /data')
 		
 	process = subprocess.Popen('ll /data', shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 	print (stdout)
 
 	# relink
 	process = subprocess.Popen('cd /data; ln -sf ' + buildToDownload +' current', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 	if process.returncode != 0:
 		print ('ERROR: couldnt recreate the link to the new .bin file in /data/current')
 	else:
@@ -190,12 +189,12 @@ def main(myargs):
 	
 
 	process = subprocess.Popen('ll /data', shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 	print (stdout)
 	
 	# reboot
 	process = subprocess.Popen('reboot', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	(stdout, stderr) = process.communicate()
+	stdout = process.communicate()
 		
 	#the end of tasks
 	return
