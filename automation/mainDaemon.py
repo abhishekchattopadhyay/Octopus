@@ -13,8 +13,8 @@ import time
 import threading
 import datetime
 import subprocess
-from sys import argv
 import xml.etree.ElementTree as ET
+from test.test_decimal import directory
 
 runningTests = []	# this list to hold the running tests
 
@@ -56,8 +56,8 @@ run the tests on the input files
 '''
 def getscheduledtests():
 	scheduled=[]
-	dir = rootDir + 'Tests/tbd/'
-	tests = os.listdir(dir) 			# get all tests
+	directory = rootDir + 'Tests/tbd/'
+	tests = os.listdir(directory) 			# get all tests
 	#tests = [dir+a for a in tests]
 	print ('INFO: Checking test case files\n',',\n'.join(tests))
 	
@@ -70,7 +70,7 @@ def getscheduledtests():
 	
 	# get the schedule time for all the files and check which ones to run
 	for tc in tests:
-		tc = dir + tc
+		tc = directory + tc
 		print ('checking configured schedule in: ' + tc)
 		tree = ET.parse(tc)
 		root = tree.getroot()
@@ -104,8 +104,8 @@ def action():
 	start a thread for each test and 
 	trigger necessary actions in that thread
 	'''
-	dir = './Tests/scheduled/'
-	tests = os.listdir(dir) 		# get all tests
+	directory = './Tests/scheduled/'
+	tests = os.listdir(directory) 		# get all tests
 	for item in tests:
 		t = test_thread(0,0,0,item)	# get a worker thread for each test to be executed
 		runningTests.append(t)		# append the thread in running queue

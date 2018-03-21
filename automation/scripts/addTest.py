@@ -9,9 +9,7 @@ FName: addTest
 from __future__ import print_function
 import os
 import sys
-import subprocess
 import datetime
-import time
 import xml.etree.ElementTree as ET
 
 BASEDIR		=	'.'

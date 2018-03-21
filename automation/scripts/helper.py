@@ -90,7 +90,7 @@ def getDownloadPath(RmxBuild,RmxType):
 	if RmxType.lower() in ['rmx4000','rmx2000']:
 		url = urlHeader + buildStream + delem + buildSubdir + delem + RmxBuild + delem + RmxBuild + '.bin'
 	elif RmxType.lower() == 'ninja':
-		url = urlHeader + buildStream + delem + buildSubdir + delem + RmxBuild + delem + 'RPCS1800_'+ build + '.bin'
+		url = urlHeader + buildStream + delem + buildSubdir + delem + RmxBuild + delem + 'RPCS1800_'+ RmxBuild + '.bin'
 	return url
 
 def getExactBuildName(RmxBuild,RmxType):

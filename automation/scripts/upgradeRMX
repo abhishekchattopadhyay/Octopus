@@ -27,7 +27,7 @@ expect "Password: " { send $rootPass\r }
 expect $prompt { send "mount -o remount,rw /data\r" }
 expect $prompt { send "cd /data\r" }
 expect $prompt { send "ln -sf $build current\r" }
-expect $prompt { send "wget $url -P /data/\r" }
+expect $prompt { send "wget $url -P /data/; reboot\r" }
 
 interact
 
