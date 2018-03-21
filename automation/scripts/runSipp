@@ -31,9 +31,15 @@ expect "yes/no" {
 # we are in the sipp machine now: 
 #Run the analyzer now
 ### 
-expect $prompt {send "nohup ./hpr-clinet-load5/modified_failure_rate.sh $tcName $fr $monitorDelay > tcName &\r" }
+expect $prompt { send "cd ./hpr-client-load5/\r"}
+expect $prompt { send "touch $tcName\r"}
+expect $prompt { send "ls -larth\r" }
+expect $prompt { send "./failCheck.sh $tcName $fr $monitorDelay > /dev/null 2>&1 \r" }
+expect $prompt { send "sleep 10\r" }
 #Run sipp  with arguments
-expect  $prompt { send "nohup ./hpr-client-load5/modified_run.sh $sippIp $dmaIp $timeInHr $timeInMi $timeInSe $rate $holdTime $tcName $TcOpt &\r" }
+expect $prompt { send "./runSipp.sh $sippIp $dmaIp $timeInHr $timeInMi $timeInSe $rate $holdTime $tcName $TcOpt > /dev/null 2>&1\r" }
+expect $prompt { send "exit\r" }
+#expect  $prompt { send "nohup ./runner.sh $sippIp $dmaIp $timeInHr $timeInMi $timeInSe $rate $holdTime $tcName $TcOpt &\r" }
 
 
 
@@ -53,5 +59,6 @@ expect  $prompt { send "nohup ./hpr-client-load5/modified_run.sh $sippIp $dmaIp 
 #expect $prompt { send "ln -sf /data/
 #expect "root@sipp?*" { send "ll\r" }
 #expect $prompt { send "ls \r" }
+#expect $prompt {send "nohup ./modified_failure_rate.sh $tcName $fr $monitorDelay > $tcName &\r" }
 
 interact

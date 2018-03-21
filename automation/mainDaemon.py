@@ -14,7 +14,7 @@ import threading
 import datetime
 import subprocess
 import xml.etree.ElementTree as ET
-from test.test_decimal import directory
+#from test.test_decimal import directory
 
 runningTests = []	# this list to hold the running tests
 

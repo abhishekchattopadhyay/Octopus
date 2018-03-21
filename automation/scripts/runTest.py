@@ -71,14 +71,14 @@ class test:
 	def runSipp(self):
 		# here we will have to check if one or two sipp is required
 		# runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate> <monitor_delay>
-		command = './scripts/runSipp ' + self.Sipp1Ip + ' ' + self.Sipp1Usr + ' ' + self.Sipp1Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.testType + ' ' + self.FR + ' ' + self.monitor_delay + ' ' + '&'
+		command = './scripts/runSipp ' + self.Sipp1Ip + ' ' + self.Sipp1Usr + ' ' + self.Sipp1Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.cps + ' ' + self.FR + ' ' + self.monitor_delay + ' ' + '&'
 		print ('executing: ' ,command)
 		process = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 		(stdout, stderr) = process.communicate()
 		
 		if (self.RmxType).lower() == 'rmx4000':
 			# we'll need two sipp machines started the 1st instance anyway
-			command = './scripts/runSipp ' + self.Sipp2Ip + ' ' + self.Sipp2Usr + ' ' + self.Sipp2Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.testType + ' ' + self.FR + ' ' + ' ' + self.monitor_delay + ' ' +'&'
+			command = './scripts/runSipp ' + self.Sipp2Ip + ' ' + self.Sipp2Usr + ' ' + self.Sipp2Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.cps + ' ' + self.FR + ' ' + ' ' + self.monitor_delay + ' ' +'&'
 			print ('executing: ',command)
 			process = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 			(stdout, stderr) = process.communicate()

@@ -6,7 +6,7 @@ while [ 1 ]
 do
 		pass=$((pass+1))
 		echo "this-pass: $pass"
-		tail -1 $1 >tmp.txt
+		tail -1 $fileToCheck >tmp.txt
 		toatl=`cat tmp.txt | cut -d';' -f13`
 		echo "toatl: $toatl"
 		failed=`cat tmp.txt | cut -d';' -f18`

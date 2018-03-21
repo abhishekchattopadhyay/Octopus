@@ -144,14 +144,17 @@ class userTest:
 					MQFactor = 1
 				else:
 					MQFactor = 3
-				
+
+			    # calculation of ccvmr = (MQFactor * Loadng Factor * ports )/100	
+				ccvmr = (MQFactor * self.user['LOADING'] * self.user['RATE'])/100
+				# hold time (in msec) = (ccvmr / (rate/1000))*1000
+				self.user['HOLDTIME'] = (ccvmr / (self.user['RATE']/1000))*1000 # in mili seconds
 				# the hold time is derived by ((MQFactor * Loading Factor * Ports)/(Rate))*10   this value would be in mil secs
 				# rate is in thousand calls factor
-				# loading factor is actually a percentage : So multiplicative facor becomes 10
 				print (MQFactor, self.user['LOADING'], self.user['MAX_PORTS'], self.user['RATE'])
-				print (type(MQFactor), type(self.user['LOADING']), type(self.user['MAX_PORTS']), type(self.user['RATE']))
-				holdTime = (MQFactor * self.user['LOADING'] * self.user['MAX_PORTS'] * 10 )/(self.user['RATE'])
-				self.user['HOLDTIME'] = holdTime
+				#print (type(MQFactor), type(self.user['LOADING']), type(self.user['MAX_PORTS']), type(self.user['RATE']))
+				#holdTime = (MQFactor * self.user['LOADING'] * self.user['MAX_PORTS'] * 10 )/(self.user['RATE'])
+				#self.user['HOLDTIME'] = holdTime
 				print ('HoldTime: ', self.user['HOLDTIME'])
 
 
