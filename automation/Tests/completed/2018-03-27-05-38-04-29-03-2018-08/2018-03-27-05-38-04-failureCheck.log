@@ -1,4 +1,0 @@
-Thu Mar 29 08:41:40 EDT 2018-> checking is the file: /tmp/SIPP/2018-03-27-05-38-04-stat.csv exists or not
-Thu Mar 29 08:41:40 EDT 2018-> the /tmp/SIPP/2018-03-27-05-38-04-stat.csv is missing terminate TC
-Date: Thu Mar 29 08:41:40 EDT 2018 Pass: 1 Total:  Success:  Failed:  FailRate:  Threshold: 
-Date: Thu Mar 29 08:41:40 EDT 2018 Failure rate maxed tempStatFile at. Terminating case
