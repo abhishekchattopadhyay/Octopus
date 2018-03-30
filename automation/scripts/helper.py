@@ -80,6 +80,10 @@ def getXmlElem(file):
 	elements['MONITOR_DELAY']	=	root.find('MONITOR_DELAY').text
 	elements['LOADING']			=	root.find('LOADING').text
 	elements['MAX_PORTS']		=	root.find('MAX_PORTS').text
+	elements['TESTTYPE']		=	root.find('TESTTYPE').text
+	elements['UPGRADE']			=	root.find('UPGRADE').text
+	elements['LOAD']			=	root.find('LOAD').text
+	elements['LOAD_DELAY']		=	root.find('LOAD_DELAY').text
 	#print (elements)
 	return elements
 
@@ -117,8 +121,6 @@ def buildavailable(build):
 	return False
 
 def getLatestBuild(codeLineup):
-	os.system('clear')
-	os.system('cls')
 	global url
 	url = urlHeader + codeLineup + delem +	buildSubdir + delem + 'last/BL_names.txt'
 	resp = requests.get(url)

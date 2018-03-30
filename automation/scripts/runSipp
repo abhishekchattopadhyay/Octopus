@@ -8,7 +8,8 @@
 #expect script
 
 set timeout 60
-set prompt "root@sipp?*"
+#set prompt "root@sipp?*"
+set prompt "root@localhost?*"
 set sippIp	 [lindex $argv 0]
 set dmaIp	 [lindex $argv 3]
 set timeInHr [lindex $argv 4]
@@ -21,7 +22,7 @@ set TcOpt	 [lindex $argv 10]
 set fr		 [lindex $argv 11]
 set monitorDelay	[lindex $argv 12]
 
-spawn ssh [lindex $argv 1]@[lindex $argv 0]
+spawn ssh -q [lindex $argv 1]@[lindex $argv 0]
 
 expect "yes/no" { 
 	send "yes\r"
@@ -31,8 +32,8 @@ expect "yes/no" {
 # we are in the sipp machine now: 
 #Run the analyzer now
 ### 
-expect $prompt { send "cd ./hpr-client-load5/\r"}
-expect $prompt { send "touch $tcName\r"}
+expect $prompt { send "cd /tmp/test/sipp\r"}
+expect $prompt { send "touch /tmp/output/$tcName\r"}
 expect $prompt { send "ls -larth\r" }
 expect $prompt { send "./failCheck.sh $tcName $fr $monitorDelay > /dev/null 2>&1 \r" }
 expect $prompt { send "sleep 10\r" }

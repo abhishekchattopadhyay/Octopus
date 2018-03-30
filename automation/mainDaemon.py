@@ -44,6 +44,7 @@ class test_thread(threading.Thread):
 		print ('executing command: ' + command)
 		process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		(stdout,stderr) = process.communicate()	# trigger the runner with a valid argument
+		print ('DONE\n\n\n')
 		return
 	
 def getrootdir():	# in production version this should get the root dir for all subsequent scripts
@@ -77,7 +78,7 @@ def getscheduledtests():
 		dt = root.find('SCHEDULE_DATE').text
 		ti = (root.find('SCHEDULE_TIME').text).split(':')[0]
 		print ('Scheduled date and time in file is |'+dt+'|', ti + '|  ', end='')
-		policy = root.find('SCHEDULE_POLICY')
+		policy = root.find('SCHEDULE_POLICY').text
 		print (policy)
 		if (date == dt or date == 'TODAY') and ti == time:
 			print ('This scenario will be added: YES')
@@ -130,8 +131,8 @@ def main():
 		else:
 			print ('INFO: No tests to schedule')
 
+		#sys.exit(0)					#   in production ths line should be taken down
 		time.sleep(60)				#	run the loop after 1 min looking for more scheduled jobs
-		sys.exit(0)					#   in production ths line should be taken down
 	return
 
 if __name__ == '__main__':
