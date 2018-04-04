@@ -86,24 +86,32 @@ class userTest:
 
 				getInp (self.user,'RMX_IP',"RMX IP: ")
 				getInp (self.user,'RMX_TYPE',"Rmx Type: ")
+
+				getInp (self.user,'TESTTYPE',"Want to upgrade and run load: ")
+				if (self.user['TESTTYPE']).lower() == 'no':
+					getInp (self.user,'UPGRADE',"Upgrade the RMX: ")
+					getInp (self.user,'LOAD',"Execute Load Test: ")
 				
-				#	get the build lineup
-				#self.codeLineup = raw_input("Pick your code line (8.7.5, 8.7.4, 8.5.13, 8.5.21): ")
-				getInp (self.user,'RELEASE','(8.7.5, 8.7.4, 8.5.13, 8.5.21)')
-				self.user['RMX_BUILD'] = helper.getLatestBuild(self.user['RELEASE'])
+				if (self.user['UPGRADE']).lower() == 'yes':
+					#	get the build lineup
+					#self.codeLineup = raw_input("Pick your code line (8.7.5, 8.7.4, 8.5.13, 8.5.21): ")
+					getInp (self.user,'RELEASE','(8.7.5, 8.7.4, 8.5.13, 8.5.21)')
+					self.user['RMX_BUILD'] = helper.getLatestBuild(self.user['RELEASE'])
 				 
-				getInp (self.user,'RMX_BUILD', 'Rmx Build: ')
-				getInp (self.user,'DMA_IP', "DMA IP: ")
-				getInp (self.user,'CPS',"Calls Per Second: ")
-				getInp (self.user,'PROTOCOL',"Protocol: ")
-				getInp (self.user,'FR',"Failure Rate:(HINT:% failure to monitor): ")
-				getInp (self.user,'SIPP_PRIMARY',"primary Sipp IP: ")
-				getInp (self.user,'SIPP_PRI_USR',"primary Sipp ssh user: ")
-				getInp (self.user,'SIPP_PRI_PASS',"primary Sipp ssh password: ")
-				if (self.user['RMX_TYPE']).lower() == 'rmx4000':
-					getInp (self.user,'SIPP_SECONDARY',"secondary Sipp IP: ")
-					getInp (self.user,'SIPP_SEC_USR',"secondary Sipp ssh user: ")
-					getInp (self.user,'SIPP_SEC_PASS',"secondary Sipp ssh passowrd: ")
+					getInp (self.user,'RMX_BUILD', 'Rmx Build: ')
+
+				if (self.user['LOAD']).lower() == 'yes':
+					getInp (self.user,'DMA_IP', "DMA IP: ")
+					getInp (self.user,'CPS',"Calls Per Second: ")
+					getInp (self.user,'PROTOCOL',"Protocol: ")
+					getInp (self.user,'FR',"Failure Rate:(HINT:% failure to monitor): ")
+					getInp (self.user,'SIPP_PRIMARY',"primary Sipp IP: ")
+					getInp (self.user,'SIPP_PRI_USR',"primary Sipp ssh user: ")
+					getInp (self.user,'SIPP_PRI_PASS',"primary Sipp ssh password: ")
+					if (self.user['RMX_TYPE']).lower() == 'rmx4000':
+						getInp (self.user,'SIPP_SECONDARY',"secondary Sipp IP: ")
+						getInp (self.user,'SIPP_SEC_USR',"secondary Sipp ssh user: ")
+						getInp (self.user,'SIPP_SEC_PASS',"secondary Sipp ssh passowrd: ")
 
 				advancedConfig = False
 
@@ -156,6 +164,8 @@ class userTest:
 				#holdTime = (MQFactor * self.user['LOADING'] * self.user['MAX_PORTS'] * 10 )/(self.user['RATE'])
 				#self.user['HOLDTIME'] = holdTime
 				print ('HoldTime: ', self.user['HOLDTIME'])
+				print ('INFO: RMX will upgrade: ', self.user['UPGRADE'])
+				print ('INFO: RMX will be load tested: ', self.user['LOAD'])
 
 
 				advancedConfig = raw_input ('If you want to Overwrite the autocalculated parameters enter (YES)')
@@ -192,6 +202,8 @@ class userTest:
 			result	=	True
 			print ('Let me quickly check the inputs')
 			print ('INFO: ','Checking build: ', end='')
+			if (self.user['UPGRADE']).lower() == 'no':
+				return True
 			if helper.buildavailable(self.user['RMX_BUILD']):
 				print ('Build choice is fine')
 			else:
@@ -281,6 +293,7 @@ def main(elements):
 if __name__ == '__main__':
 	sys.dont_write_bytecode = True
 	import helper
+	os.system('clear')
 	main(helper.getXmlElem(_template))
 	sys.exit(0)
 	

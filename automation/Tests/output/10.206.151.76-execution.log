@@ -1,0 +1,575 @@
+Thu Mar 29 07:28:55 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 07:28:56 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 07:28:57 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 07:28:59 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 07:29:00 EDT 2018-> schedule time: 0
+Thu Mar 29 07:29:02 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 07:29:03 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 07:29:04 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 07:29:05 EDT 2018-> There are files to check
+Thu Mar 29 07:29:07 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 07:29:07 EDT 2018-> checking Schedule
+Thu Mar 29 07:29:08 EDT 2018-> xml test scheduling started
+Thu Mar 29 07:29:09 EDT 2018-> Thu Mar 29 07:29:09 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 07:29:11 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 07:29:12 EDT 2018-> Duration in hour: 2
+Thu Mar 29 07:29:13 EDT 2018-> Duration in Min: 0
+Thu Mar 29 07:29:15 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 07:29:16 EDT 2018-> Hold time: 1500000
+Thu Mar 29 07:29:17 EDT 2018-> CPS: 2
+Thu Mar 29 07:29:19 EDT 2018-> Call Rate: 1000
+Thu Mar 29 07:29:20 EDT 2018-> Failure rate: 50
+Thu Mar 29 07:29:21 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 07:29:22 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 07:29:23 EDT 2018-> Hold on.. . 
+Thu Mar 29 07:29:29 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 07:29:30 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 07:29:30 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 07:29:31 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1
+Thu Mar 29 07:29:32 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 07:29:34 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 07:30:35 EDT 2018-> Sipp running pid is : 1755
+Thu Mar 29 07:30:37 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 07:30:38 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 07:30:40 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 07:30:41 EDT 2018-> schedule time: 0
+Thu Mar 29 07:30:42 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 07:30:44 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 07:30:45 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 07:30:46 EDT 2018-> There are files to check
+Thu Mar 29 07:30:47 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 07:30:48 EDT 2018-> checking Schedule
+Thu Mar 29 07:30:49 EDT 2018-> xml test scheduling started
+Thu Mar 29 07:30:50 EDT 2018-> Thu Mar 29 07:30:50 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 07:30:51 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 07:30:53 EDT 2018-> Duration in hour: 2
+Thu Mar 29 07:30:54 EDT 2018-> Duration in Min: 0
+Thu Mar 29 07:30:55 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 07:30:57 EDT 2018-> Hold time: 1500000
+Thu Mar 29 07:30:58 EDT 2018-> CPS: 2
+Thu Mar 29 07:30:59 EDT 2018-> Call Rate: 1000
+Thu Mar 29 07:31:01 EDT 2018-> Failure rate: 50
+Thu Mar 29 07:31:02 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 07:31:03 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 07:31:04 EDT 2018-> Hold on.. . 
+Thu Mar 29 07:31:09 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 07:31:10 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 07:31:11 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 07:31:12 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1
+Thu Mar 29 07:31:13 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 07:31:15 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 07:50:43 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 07:50:45 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 07:50:46 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 07:50:47 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 07:50:49 EDT 2018-> schedule time: 0
+Thu Mar 29 07:50:50 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 07:50:51 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 07:50:53 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 07:50:53 EDT 2018-> There are files to check
+Thu Mar 29 07:50:55 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 07:50:56 EDT 2018-> checking Schedule
+Thu Mar 29 07:50:57 EDT 2018-> xml test scheduling started
+Thu Mar 29 07:50:58 EDT 2018-> Thu Mar 29 07:50:58 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 07:52:26 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 07:52:27 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 07:52:29 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 07:52:30 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 07:52:32 EDT 2018-> schedule time: 0
+Thu Mar 29 07:52:33 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 07:52:34 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 07:52:36 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 07:52:36 EDT 2018-> There are files to check
+Thu Mar 29 07:52:38 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 07:52:39 EDT 2018-> checking Schedule
+Thu Mar 29 07:52:40 EDT 2018-> xml test scheduling started
+Thu Mar 29 07:52:41 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 07:52:42 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 07:52:43 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 07:52:45 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 07:52:46 EDT 2018-> Duration in hour: 2
+Thu Mar 29 07:52:47 EDT 2018-> Duration in Min: 0
+Thu Mar 29 07:52:48 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 07:52:50 EDT 2018-> Hold time: 1500000
+Thu Mar 29 07:52:51 EDT 2018-> CPS: 2
+Thu Mar 29 07:52:52 EDT 2018-> Call Rate: 1000
+Thu Mar 29 07:52:54 EDT 2018-> Failure rate: 50
+Thu Mar 29 07:52:55 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 07:52:56 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 07:52:57 EDT 2018-> Hold on.. . 
+Thu Mar 29 07:53:02 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 07:53:04 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 07:53:04 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 07:53:05 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1  50
+Thu Mar 29 07:53:06 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 07:53:08 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 07:54:09 EDT 2018-> Sipp running pid is : 2678
+Thu Mar 29 07:54:11 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 07:54:12 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 08:00:00 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 08:00:01 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 08:00:03 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 08:00:04 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 08:00:05 EDT 2018-> schedule time: 0
+Thu Mar 29 08:00:07 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 08:00:08 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 08:00:09 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 08:00:10 EDT 2018-> There are files to check
+Thu Mar 29 08:00:12 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 08:00:13 EDT 2018-> checking Schedule
+Thu Mar 29 08:00:14 EDT 2018-> xml test scheduling started
+Thu Mar 29 08:00:15 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 08:00:16 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 08:00:17 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 08:00:18 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 08:00:20 EDT 2018-> Duration in hour: 2
+Thu Mar 29 08:00:21 EDT 2018-> Duration in Min: 0
+Thu Mar 29 08:00:22 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 08:00:24 EDT 2018-> Hold time: 1500000
+Thu Mar 29 08:00:25 EDT 2018-> CPS: 2
+Thu Mar 29 08:00:26 EDT 2018-> Call Rate: 1000
+Thu Mar 29 08:00:28 EDT 2018-> Failure rate: 50
+Thu Mar 29 08:00:29 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 08:00:30 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 08:00:30 EDT 2018-> Hold on.. . 
+Thu Mar 29 08:00:36 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 08:00:37 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 08:00:38 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 08:00:39 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1  50
+Thu Mar 29 08:00:40 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 08:00:42 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 08:01:43 EDT 2018-> Sipp running pid is : 3301
+Thu Mar 29 08:02:45 EDT 2018-> Sipp running pid is : 3301
+Thu Mar 29 08:03:46 EDT 2018-> Sipp running pid is : 3301
+Thu Mar 29 08:04:48 EDT 2018-> Sipp running pid is : 3301
+Thu Mar 29 08:05:33 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 08:05:34 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 08:05:36 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 08:05:37 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 08:05:39 EDT 2018-> schedule time: 0
+Thu Mar 29 08:05:40 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 08:05:41 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 08:05:43 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 08:05:43 EDT 2018-> There are files to check
+Thu Mar 29 08:05:45 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 08:05:46 EDT 2018-> checking Schedule
+Thu Mar 29 08:05:47 EDT 2018-> xml test scheduling started
+Thu Mar 29 08:05:48 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 08:05:50 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 08:05:51 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 08:05:52 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 08:05:53 EDT 2018-> Duration in hour: 2
+Thu Mar 29 08:05:55 EDT 2018-> Duration in Min: 0
+Thu Mar 29 08:05:56 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 08:05:57 EDT 2018-> Hold time: 1500000
+Thu Mar 29 08:05:59 EDT 2018-> CPS: 2
+Thu Mar 29 08:06:00 EDT 2018-> Call Rate: 1000
+Thu Mar 29 08:06:01 EDT 2018-> Failure rate: 50
+Thu Mar 29 08:06:03 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 08:06:03 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 08:06:04 EDT 2018-> Hold on.. . 
+Thu Mar 29 08:06:10 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 08:06:11 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 08:06:12 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 08:06:13 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1  50
+Thu Mar 29 08:06:13 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 08:06:16 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 08:07:17 EDT 2018-> Sipp running pid is : 3664
+Thu Mar 29 08:08:18 EDT 2018-> Sipp running pid is : 3664
+Thu Mar 29 08:09:20 EDT 2018-> Sipp running pid is : 3664
+Thu Mar 29 08:14:42 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 08:14:43 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 08:14:44 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 08:14:46 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 08:14:47 EDT 2018-> schedule time: 0
+Thu Mar 29 08:14:49 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 08:14:50 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 08:14:51 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 08:14:52 EDT 2018-> There are files to check
+Thu Mar 29 08:14:53 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 08:14:55 EDT 2018-> checking Schedule
+Thu Mar 29 08:14:55 EDT 2018-> xml test scheduling started
+Thu Mar 29 08:14:57 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 08:14:58 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 08:14:59 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 08:15:00 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 08:15:02 EDT 2018-> Duration in hour: 2
+Thu Mar 29 08:15:03 EDT 2018-> Duration in Min: 0
+Thu Mar 29 08:15:04 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 08:15:06 EDT 2018-> Hold time: 1500000
+Thu Mar 29 08:15:07 EDT 2018-> CPS: 2
+Thu Mar 29 08:15:08 EDT 2018-> Call Rate: 1000
+Thu Mar 29 08:15:10 EDT 2018-> Failure rate: 50
+Thu Mar 29 08:15:11 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 08:15:12 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 08:15:13 EDT 2018-> Hold on.. . 
+Thu Mar 29 08:15:18 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 08:15:19 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 08:15:20 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 08:15:21 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1  50
+Thu Mar 29 08:15:22 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 08:15:24 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 08:16:25 EDT 2018-> Sipp running pid is : 4107
+Thu Mar 29 08:17:27 EDT 2018-> Sipp running pid is : 4107
+Thu Mar 29 08:18:28 EDT 2018-> Sipp running pid is : 4107
+Thu Mar 29 08:19:30 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 08:19:32 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 08:19:33 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 08:19:35 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 08:19:36 EDT 2018-> schedule time: 0
+Thu Mar 29 08:19:37 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 08:19:38 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 08:19:40 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 08:19:41 EDT 2018-> There are files to check
+Thu Mar 29 08:19:42 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 08:19:43 EDT 2018-> checking Schedule
+Thu Mar 29 08:19:44 EDT 2018-> xml test scheduling started
+Thu Mar 29 08:19:45 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 08:19:47 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 08:19:47 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 08:19:49 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 08:19:50 EDT 2018-> Duration in hour: 2
+Thu Mar 29 08:19:51 EDT 2018-> Duration in Min: 0
+Thu Mar 29 08:19:53 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 08:19:54 EDT 2018-> Hold time: 1500000
+Thu Mar 29 08:19:55 EDT 2018-> CPS: 2
+Thu Mar 29 08:19:57 EDT 2018-> Call Rate: 1000
+Thu Mar 29 08:19:58 EDT 2018-> Failure rate: 50
+Thu Mar 29 08:19:59 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 08:20:00 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 08:20:01 EDT 2018-> Hold on.. . 
+Thu Mar 29 08:20:07 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 08:20:08 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 08:20:09 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 08:20:09 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1 900 50
+Thu Mar 29 08:20:10 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 08:20:13 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 10:37:53 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 10:37:59 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 10:38:00 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 10:38:01 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 10:38:03 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 10:38:04 EDT 2018-> schedule time: 0
+Thu Mar 29 10:38:05 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 10:38:07 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 10:38:08 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 10:38:09 EDT 2018-> There are files to check
+Thu Mar 29 10:38:10 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 10:38:11 EDT 2018-> checking Schedule
+Thu Mar 29 10:38:12 EDT 2018-> xml test scheduling started
+Thu Mar 29 10:38:14 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 10:38:15 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 10:38:16 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 10:38:17 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 10:38:19 EDT 2018-> Duration in hour: 2
+Thu Mar 29 10:38:20 EDT 2018-> Duration in Min: 0
+Thu Mar 29 10:38:21 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 10:38:22 EDT 2018-> Hold time: 1500000
+Thu Mar 29 10:38:23 EDT 2018-> CPS: 2
+Thu Mar 29 10:38:25 EDT 2018-> Call Rate: 1000
+Thu Mar 29 10:38:26 EDT 2018-> Failure rate: 50
+Thu Mar 29 10:38:27 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 10:38:28 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 10:38:28 EDT 2018-> Hold on.. . 
+Thu Mar 29 10:38:34 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 10:38:35 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 10:38:36 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 10:38:36 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1  50
+Thu Mar 29 10:38:37 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 10:38:39 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 10:39:40 EDT 2018-> Sipp running pid is : 10867
+Thu Mar 29 10:40:41 EDT 2018-> Sipp running pid is : 10867
+Thu Mar 29 10:41:43 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 10:41:45 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 10:41:46 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 10:41:47 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 10:41:49 EDT 2018-> schedule time: 0
+Thu Mar 29 10:41:50 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 10:41:51 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 10:41:53 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 10:41:54 EDT 2018-> There are files to check
+Thu Mar 29 10:41:55 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 10:41:56 EDT 2018-> checking Schedule
+Thu Mar 29 10:41:57 EDT 2018-> xml test scheduling started
+Thu Mar 29 10:41:58 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 10:42:00 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 10:42:00 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 10:42:02 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 10:42:03 EDT 2018-> Duration in hour: 2
+Thu Mar 29 10:42:04 EDT 2018-> Duration in Min: 0
+Thu Mar 29 10:42:06 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 10:42:07 EDT 2018-> Hold time: 1500000
+Thu Mar 29 10:42:08 EDT 2018-> CPS: 2
+Thu Mar 29 10:42:10 EDT 2018-> Call Rate: 1000
+Thu Mar 29 10:42:11 EDT 2018-> Failure rate: 50
+Thu Mar 29 10:42:12 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 10:42:13 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 10:42:14 EDT 2018-> Hold on.. . 
+Thu Mar 29 10:42:20 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 10:42:21 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 10:42:21 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 10:42:22 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1 900 50
+Thu Mar 29 10:42:23 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 10:42:25 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 10:45:51 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 10:45:52 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 10:45:53 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 10:45:55 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 10:45:56 EDT 2018-> schedule time: 0
+Thu Mar 29 10:45:58 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 10:45:59 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 10:46:00 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 10:46:01 EDT 2018-> There are files to check
+Thu Mar 29 10:46:02 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 10:46:04 EDT 2018-> checking Schedule
+Thu Mar 29 10:46:05 EDT 2018-> xml test scheduling started
+Thu Mar 29 10:46:06 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 10:46:07 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 10:46:08 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 10:46:09 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 10:46:11 EDT 2018-> Duration in hour: 2
+Thu Mar 29 10:46:12 EDT 2018-> Duration in Min: 0
+Thu Mar 29 10:46:13 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 10:46:15 EDT 2018-> Hold time: 1500000
+Thu Mar 29 10:46:16 EDT 2018-> CPS: 2
+Thu Mar 29 10:46:17 EDT 2018-> Call Rate: 1000
+Thu Mar 29 10:46:19 EDT 2018-> Failure rate: 50
+Thu Mar 29 10:46:20 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 10:46:21 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 10:46:21 EDT 2018-> Hold on.. . 
+Thu Mar 29 10:46:27 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 10:46:28 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 10:46:29 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 10:46:30 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1  50
+Thu Mar 29 10:46:31 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 10:46:33 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 10:47:34 EDT 2018-> Sipp running pid is : 11453
+Thu Mar 29 10:50:30 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 10:50:31 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 10:50:32 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 10:50:34 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 10:50:35 EDT 2018-> schedule time: 0
+Thu Mar 29 10:50:37 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 10:50:38 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 10:50:39 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 10:50:40 EDT 2018-> There are files to check
+Thu Mar 29 10:50:59 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 10:51:00 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 10:51:01 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 10:51:03 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 10:51:04 EDT 2018-> schedule time: 0
+Thu Mar 29 10:51:05 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 10:51:07 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 10:51:08 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 10:51:09 EDT 2018-> There are files to check
+Thu Mar 29 10:51:10 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 10:51:11 EDT 2018-> checking Schedule
+Thu Mar 29 10:51:12 EDT 2018-> xml test scheduling started
+Thu Mar 29 10:51:13 EDT 2018 -> load delay would be: 25 Now sleeping
+Thu Mar 29 10:51:15 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 10:51:16 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 10:51:17 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 10:51:18 EDT 2018-> Duration in hour: 2
+Thu Mar 29 10:51:19 EDT 2018-> Duration in Min: 0
+Thu Mar 29 10:51:21 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 10:51:22 EDT 2018-> Hold time: 1500000
+Thu Mar 29 10:51:23 EDT 2018-> CPS: 2
+Thu Mar 29 10:51:25 EDT 2018-> Call Rate: 1000
+Thu Mar 29 10:51:26 EDT 2018-> Failure rate: 50
+Thu Mar 29 10:51:27 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 10:51:28 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 10:51:29 EDT 2018-> Hold on.. . 
+Thu Mar 29 10:51:35 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 10:51:36 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 10:51:37 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 10:51:38 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 10:51:39 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1 900 50
+Thu Mar 29 11:25:45 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 11:25:46 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 11:25:48 EDT 2018-> test file: /tmp/Test/running/*.xml	
+Thu Mar 29 11:25:49 EDT 2018-> schedule date: 
+Thu Mar 29 11:25:50 EDT 2018-> schedule time: 
+Thu Mar 29 11:25:51 EDT 2018-> schedule policy: 
+Thu Mar 29 11:25:52 EDT 2018-> sipp primary ip: 
+Thu Mar 29 11:25:53 EDT 2018-> sipp secondary: 
+Thu Mar 29 11:26:54 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 11:26:55 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 11:26:56 EDT 2018-> test file: /tmp/Test/running/*.xml	
+Thu Mar 29 11:26:57 EDT 2018-> schedule date: 
+Thu Mar 29 11:26:58 EDT 2018-> schedule time: 
+Thu Mar 29 11:26:59 EDT 2018-> schedule policy: 
+Thu Mar 29 11:27:00 EDT 2018-> sipp primary ip: 
+Thu Mar 29 11:27:01 EDT 2018-> sipp secondary: 
+Thu Mar 29 11:28:02 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 11:28:03 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 11:28:04 EDT 2018-> test file: /tmp/Test/running/*.xml	
+Thu Mar 29 11:28:05 EDT 2018-> schedule date: 
+Thu Mar 29 11:28:06 EDT 2018-> schedule time: 
+Thu Mar 29 11:28:08 EDT 2018-> schedule policy: 
+Thu Mar 29 11:28:09 EDT 2018-> sipp primary ip: 
+Thu Mar 29 11:28:10 EDT 2018-> sipp secondary: 
+Thu Mar 29 11:30:07 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 11:30:08 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 11:30:09 EDT 2018-> test file: /tmp/Test/running/*.xml	
+Thu Mar 29 11:30:10 EDT 2018-> schedule date: 
+Thu Mar 29 11:30:11 EDT 2018-> schedule time: 
+Thu Mar 29 11:30:12 EDT 2018-> schedule policy: 
+Thu Mar 29 11:30:14 EDT 2018-> sipp primary ip: 
+Thu Mar 29 11:30:15 EDT 2018-> sipp secondary: 
+Thu Mar 29 11:31:15 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 11:31:17 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 11:31:19 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 11:31:20 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 11:31:22 EDT 2018-> schedule time: 0
+Thu Mar 29 11:31:23 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 11:31:24 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 11:31:26 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 11:31:26 EDT 2018-> There are files to check
+Thu Mar 29 11:31:28 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 11:31:29 EDT 2018-> checking Schedule
+Thu Mar 29 11:31:30 EDT 2018-> xml test scheduling started
+Thu Mar 29 11:31:31 EDT 2018 -> load delay would be: 25
+Thu Mar 29 11:31:33 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 11:31:33 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 11:31:35 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 11:31:36 EDT 2018-> Duration in hour: 2
+Thu Mar 29 11:31:37 EDT 2018-> Duration in Min: 0
+Thu Mar 29 11:31:39 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 11:31:40 EDT 2018-> Hold time: 1500000
+Thu Mar 29 11:31:41 EDT 2018-> CPS: 2
+Thu Mar 29 11:31:43 EDT 2018-> Call Rate: 1000
+Thu Mar 29 11:31:44 EDT 2018-> Failure rate: 50
+Thu Mar 29 11:31:45 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 11:31:46 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 11:31:47 EDT 2018-> Hold on.. . 
+Thu Mar 29 11:31:53 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 11:31:54 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 11:31:54 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 11:31:55 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 11:31:56 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1 900 50
+Thu Mar 29 11:31:58 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 11:32:59 EDT 2018-> Sipp running pid is : 13855
+Thu Mar 29 11:34:01 EDT 2018-> Sipp running pid is : 
+Thu Mar 29 11:34:02 EDT 2018-> Apparently no sipp is running
+Thu Mar 29 11:34:04 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Thu Mar 29 11:34:06 EDT 2018-> schedule date: 27-03-2018
+Thu Mar 29 11:34:07 EDT 2018-> schedule time: 0
+Thu Mar 29 11:34:08 EDT 2018-> schedule policy: IMMEDIATE
+Thu Mar 29 11:34:10 EDT 2018-> sipp primary ip: 10.206.151.76
+Thu Mar 29 11:34:11 EDT 2018-> sipp secondary: INVALID
+Thu Mar 29 11:34:12 EDT 2018-> There are files to check
+Thu Mar 29 11:34:13 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Thu Mar 29 11:34:15 EDT 2018-> checking Schedule
+Thu Mar 29 11:34:15 EDT 2018-> xml test scheduling started
+Thu Mar 29 11:34:17 EDT 2018 -> load delay would be: 25
+Thu Mar 29 11:34:18 EDT 2018-> Is Rmx Upgraded: no
+Thu Mar 29 11:34:19 EDT 2018-> Load delay is nil now: will not wait before starting load
+Thu Mar 29 11:34:20 EDT 2018-> DMA IP: 10.206.101.28
+Thu Mar 29 11:34:21 EDT 2018-> Duration in hour: 2
+Thu Mar 29 11:34:23 EDT 2018-> Duration in Min: 0
+Thu Mar 29 11:34:24 EDT 2018-> Dutation in sec: 0
+Thu Mar 29 11:34:25 EDT 2018-> Hold time: 1500000
+Thu Mar 29 11:34:27 EDT 2018-> CPS: 2
+Thu Mar 29 11:34:28 EDT 2018-> Call Rate: 1000
+Thu Mar 29 11:34:29 EDT 2018-> Failure rate: 50
+Thu Mar 29 11:34:31 EDT 2018-> Start monitoring after: 900 seconds
+Thu Mar 29 11:34:31 EDT 2018-> This is going to be a audio video test
+Thu Mar 29 11:34:32 EDT 2018-> Hold on.. . 
+Thu Mar 29 11:34:38 EDT 2018-> At running helm.: /tmp/SIPP/
+Thu Mar 29 11:34:39 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Thu Mar 29 11:34:40 EDT 2018-> Wait for 15 min before monitoring the load result
+Thu Mar 29 11:34:41 EDT 2018-> Starting sipp as per above settings
+Thu Mar 29 11:34:41 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1 900 50
+Thu Mar 29 11:34:44 EDT 2018-> Sipp started & monitoring started
+Thu Mar 29 11:35:45 EDT 2018-> Sipp running pid is : 14080
+Thu Mar 29 11:36:46 EDT 2018-> Sipp running pid is : 14080
+Fri Mar 30 04:15:13 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 04:15:14 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 04:15:15 EDT 2018-> test file: /tmp/Test/running/*.xml	
+Fri Mar 30 04:15:16 EDT 2018-> schedule date: 
+Fri Mar 30 04:16:19 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 04:16:21 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 04:16:22 EDT 2018-> test file: /tmp/Test/running/*.xml	
+Fri Mar 30 04:16:23 EDT 2018-> schedule date: 
+Fri Mar 30 04:17:09 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 04:17:10 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 04:17:12 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Fri Mar 30 04:17:12 EDT 2018-> schedule date: 
+Fri Mar 30 04:17:29 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 04:17:30 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 04:17:31 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Fri Mar 30 04:17:32 EDT 2018-> schedule date: 
+Fri Mar 30 04:17:53 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 04:17:55 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 04:17:56 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Fri Mar 30 04:17:57 EDT 2018-> schedule date: 
+Fri Mar 30 04:25:25 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 04:25:26 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 04:25:27 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Fri Mar 30 04:25:28 EDT 2018-> schedule date: 
+Fri Mar 30 04:31:08 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 04:31:09 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 04:31:11 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Fri Mar 30 05:22:48 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 05:22:49 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 05:22:50 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Fri Mar 30 05:22:52 EDT 2018-> schedule time: 0
+Fri Mar 30 05:22:54 EDT 2018-> schedule policy: IMMEDIATE
+Fri Mar 30 05:22:55 EDT 2018-> sipp primary ip: 10.206.151.76
+Fri Mar 30 05:22:56 EDT 2018-> sipp secondary: INVALID
+Fri Mar 30 05:22:57 EDT 2018-> There are files to check
+Fri Mar 30 05:22:59 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Fri Mar 30 05:23:00 EDT 2018-> checking Schedule
+Fri Mar 30 05:23:01 EDT 2018-> xml test scheduling started
+Fri Mar 30 05:23:02 EDT 2018 -> load delay would be: 25
+Fri Mar 30 05:23:03 EDT 2018-> Is Rmx Upgraded: no
+Fri Mar 30 05:23:04 EDT 2018-> Load delay is nil now: will not wait before starting load
+Fri Mar 30 05:23:06 EDT 2018-> DMA IP: 10.206.101.28
+Fri Mar 30 05:23:07 EDT 2018-> Duration in hour: 2
+Fri Mar 30 05:23:08 EDT 2018-> Duration in Min: 0
+Fri Mar 30 05:23:09 EDT 2018-> Dutation in sec: 0
+Fri Mar 30 05:23:11 EDT 2018-> Hold time: 1500000
+Fri Mar 30 05:23:12 EDT 2018-> CPS: 2
+Fri Mar 30 05:23:13 EDT 2018-> Call Rate: 1000
+Fri Mar 30 05:23:15 EDT 2018-> Failure rate: 50
+Fri Mar 30 05:23:16 EDT 2018-> Start monitoring after: 900 seconds
+Fri Mar 30 05:23:17 EDT 2018-> This is going to be a audio video test
+Fri Mar 30 05:23:18 EDT 2018-> Hold on.. . 
+Fri Mar 30 05:23:24 EDT 2018-> At running helm.: /tmp/SIPP/
+Fri Mar 30 05:23:25 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Fri Mar 30 05:23:25 EDT 2018-> Wait for 15 min before monitoring the load result
+Fri Mar 30 05:23:26 EDT 2018-> Starting sipp as per above settings
+Fri Mar 30 05:23:27 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1 900 50
+Fri Mar 30 05:25:20 EDT 2018-> Sipp running pid is : 
+Fri Mar 30 05:25:21 EDT 2018-> Apparently no sipp is running
+Fri Mar 30 05:25:23 EDT 2018-> test file: /tmp/Test/running/2018-03-27-05-38-04.xml	
+Fri Mar 30 05:25:25 EDT 2018-> schedule time: 0
+Fri Mar 30 05:25:26 EDT 2018-> schedule policy: IMMEDIATE
+Fri Mar 30 05:25:28 EDT 2018-> sipp primary ip: 10.206.151.76
+Fri Mar 30 05:25:29 EDT 2018-> sipp secondary: INVALID
+Fri Mar 30 05:25:30 EDT 2018-> There are files to check
+Fri Mar 30 05:25:31 EDT 2018-> Test case name: 2018-03-27-05-38-04
+Fri Mar 30 05:25:32 EDT 2018-> checking Schedule
+Fri Mar 30 05:25:33 EDT 2018-> xml test scheduling started
+Fri Mar 30 05:25:34 EDT 2018 -> load delay would be: 25
+Fri Mar 30 05:25:36 EDT 2018-> Is Rmx Upgraded: no
+Fri Mar 30 05:25:37 EDT 2018-> Load delay is nil now: will not wait before starting load
+Fri Mar 30 05:25:38 EDT 2018-> DMA IP: 10.206.101.28
+Fri Mar 30 05:25:39 EDT 2018-> Duration in hour: 2
+Fri Mar 30 05:25:41 EDT 2018-> Duration in Min: 0
+Fri Mar 30 05:25:42 EDT 2018-> Dutation in sec: 0
+Fri Mar 30 05:25:43 EDT 2018-> Hold time: 1500000
+Fri Mar 30 05:25:44 EDT 2018-> CPS: 2
+Fri Mar 30 05:25:46 EDT 2018-> Call Rate: 1000
+Fri Mar 30 05:25:47 EDT 2018-> Failure rate: 50
+Fri Mar 30 05:25:48 EDT 2018-> Start monitoring after: 900 seconds
+Fri Mar 30 05:25:49 EDT 2018-> This is going to be a audio video test
+Fri Mar 30 05:25:50 EDT 2018-> Hold on.. . 
+Fri Mar 30 05:25:56 EDT 2018-> At running helm.: /tmp/SIPP/
+Fri Mar 30 05:25:57 EDT 2018-> Cleaning up last run artifacts if left any executing cleanup.sh
+Fri Mar 30 05:25:58 EDT 2018-> Wait for 15 min before monitoring the load result
+Fri Mar 30 05:25:58 EDT 2018-> Starting sipp as per above settings
+Fri Mar 30 05:25:59 EDT 2018-> Running: ./run.sh 10.206.151.76 10.206.101.28 2 0 0 1000 1500000 2018-03-27-05-38-04 1 900 50
+Fri Mar 30 05:26:01 EDT 2018-> Sipp started & monitoring started
+Fri Mar 30 05:27:02 EDT 2018-> Sipp running pid is : 6426
+Fri Mar 30 05:28:03 EDT 2018-> Sipp running pid is : 6426

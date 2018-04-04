@@ -53,8 +53,14 @@ class test:
 		self.monitor_delay	=	elements['MONITOR_DELAY']
 		self.loading		=	elements['LOADING']
 		self.maxPort		=	elements['MAX_PORTS']
+		self.testtype		=	elements['TESTTYPE']
+		self.upgrade		=	elements['UPGRADE']
+		self.load			=	elements['LOAD']
+		self.loadDelay		=	elements['LOAD_DELAY']
 
 	def executeupgrade(self):
+		if (self.upgrade).lower() == 'no':
+			return True
 		'''
 		upgradeRMX is an expect based script which 
 		upgrades all RMXs based on the target version provided
@@ -69,6 +75,9 @@ class test:
 		return True	
 
 	def runSipp(self):
+		if (self.load).lower() == 'no':
+			return 
+
 		# here we will have to check if one or two sipp is required
 		# runSipp <sippIp> <username> <password> <dmaIp> <time <hr> <min> <sec>> <rate> <holdTime> <tcName> <1/2> <failureRate> <monitor_delay>
 		command = './scripts/runSipp ' + self.Sipp1Ip + ' ' + self.Sipp1Usr + ' ' + self.Sipp1Pass  + ' ' + self.DmaIp + ' ' + self.durationH + ' ' + self.durationM + ' ' + self.durationS + ' ' + self.rate + ' ' + self.holdTime + ' ' + self.name + ' ' + self.cps + ' ' + self.FR + ' ' + self.monitor_delay + ' ' + '&'
@@ -122,23 +131,25 @@ def main(myargs):
 	if not t1.executeupgrade():	# now upgrade the RMX
 		raise ValueError ('Error: issue with rmx upgrade')
 
-	# well wait for some time after upgrade and allow the rmx to come up
-	# 5 mins in case SOFT_MCU_EDGE
-	# 10 min in case of NINJA
-	# 20 mins in case of RMX2000 or RMX4000
-	wt = 0
-	if (t1.RmxType).lower() == 'soft_mcu_edge':
-		wt = 5 
-	if (t1.RmxType).lower() == 'ninja':
-		wt = 10
-	else:
-		wt = 20
-	print ('Wait for RMX to upgrade: ',wt, ' minutes')
-	time.sleep(wt) #	Okay sleeping
+	if (self.upgrade).lower() == 'YES':
+		# well wait for some time after upgrade and allow the rmx to come up
+		# 5 mins in case SOFT_MCU_EDGE
+		# 10 min in case of NINJA
+		# 20 mins in case of RMX2000 or RMX4000
+		wt = 0
+		if (t1.RmxType).lower() == 'soft_mcu_edge':
+			wt = 5 
+		if (t1.RmxType).lower() == 'ninja':
+			wt = 10
+		else:
+			wt = 20
+		#wt = 0
+		print ('Wait for RMX to upgrade: ',wt, ' minutes')
+		time.sleep(wt) #	Okay sleeping
 
 	# now run sipp
-	print ('\n Running Sipp')
-	t1.runSipp()
+	#print ('\n Running Sipp')
+	#t1.runSipp()
 	return
 
 if __name__ == '__main__':

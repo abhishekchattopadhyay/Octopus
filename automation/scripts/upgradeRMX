@@ -14,6 +14,7 @@ set rootPass "T1TLw@yh@lnut0u"
 set url [lindex $argv 3]
 set path  [lindex $argv 5]
 set build [lindex $argv 4]
+set b AUTO_$build
 
 spawn ssh [lindex $argv 1]@[lindex $argv 0]
 
@@ -26,8 +27,10 @@ expect $prompt { send  $root\r }
 expect "Password: " { send $rootPass\r }
 expect $prompt { send "mount -o remount,rw /data\r" }
 expect $prompt { send "cd /data\r" }
-expect $prompt { send "ln -sf $build current\r" }
-expect $prompt { send "wget $url -P /data/; reboot\r" }
+expect $prompt { send "ln -sf $b current\r" }
+expect $prompt { send "wget -q $url -P /data/; mv /data/$build /data/$b\r" }
+#expect $prompt { send "mv /data/$build /data/$b;\r" }
+#expect $prompt { send "ln -sf $build current\r" }
 
 interact
 
