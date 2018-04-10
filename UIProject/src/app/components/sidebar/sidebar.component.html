@@ -19,18 +19,20 @@
 
         <ul class="nav">
             <ng-container *ngFor="let menuItem of menuItems">
-                <li routerLinkActive="active" class="{{menuItem.class}}">
-                    <a  [routerLink]="[menuItem.path]" href="#{{menuItem.divId}}" *ngIf="!menuItem.hasChild">
+                <li routerLinkActive="active" class="{{menuItem.class}}" *ngIf="!menuItem.hasChild">
+                    <a [routerLink]="[menuItem.path]">
                         <i class="material-icons">{{menuItem.icon}}</i>
                         <p>{{menuItem.title}}</p>
                     </a>
-                    <a data-toggle="collapse" routerlinkactive="active" href="/#{{menuItem.divId}}" *ngIf="menuItem.hasChild">
+                </li>
+                <li  class="{{menuItem.class}}" *ngIf="menuItem.hasChild">
+                    <a data-toggle="collapse"  href="#{{menuItem.divId}}" *ngIf="menuItem.hasChild">
                         <i class="material-icons">{{menuItem.icon}}</i>
                         <p>{{menuItem.title}}</p>
                     </a>
                     <div class="collapse" id="{{menuItem.divId}}" style="" *ngIf="menuItem.hasChild">
                         <ul class="nav">
-                            <li class="nav-item" routerlinkactive="active" ng-reflect-router-link-active="active" *ngFor="let menuItemchild of menuItem.childs">
+                            <li class="nav-item" routerLinkActive="active" *ngFor="let menuItemchild of menuItem.childs">
                                 <a [routerLink]="[menuItemchild.path]">
                                     <i class="material-icons">{{menuItemchild.icon}}</i>
                                     <p>{{menuItemchild.title}}</p>
@@ -39,7 +41,7 @@
                         </ul>
                     </div>
                 </li>
-               
+
             </ng-container>
         </ul>
     </div>

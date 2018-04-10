@@ -12,13 +12,25 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TestCaseComponent } from './test-case/test-case.component';
 import { testcaseservice } from './services/testcase.service';
-
-
+import { adddma } from './components/admin/adddma/adddma.component';
+import { addrmx } from './components/admin/addrmx/addrmx.component';
+import { dmatype } from './components/admin/dmatype/dmatype.component';
+import { protocoltype } from './components/admin/protocoltype/protocoltype.component';
+import { testtype } from './components/admin/testtype/testtype.component';
+import { videotype } from './components/admin/videotype/videotype.component';
+import { rmxtype } from './components/admin/rmxtype/rmxtype.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,    
-    TestCaseComponent
+    TestCaseComponent,
+    adddma,
+    addrmx,
+    dmatype,
+    protocoltype,
+    testtype,
+    videotype,
+    rmxtype
          
   ],
   imports: [
