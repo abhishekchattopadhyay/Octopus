@@ -9,6 +9,8 @@ import { TestCaseComponent } from './test-case/test-case.component';
 const routes: Routes =[
     { path: 'dashboard',      component: DashboardComponent },    
     { path: 'test-case',     component: TestCaseComponent },     
+    { path: 'adminChild',     redirectTo: '#', pathMatch: 'full'  }, 
+    { path: 'childdashboard',     redirectTo: 'dashboard'  }, 
     { path: '',               redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 

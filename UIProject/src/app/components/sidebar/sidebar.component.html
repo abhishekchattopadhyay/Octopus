@@ -1,12 +1,10 @@
 <div class="logo">
     <a href="#" class="simple-text">
-       
+
         Test Runner
     </a>
 </div>
 <div class="sidebar-wrapper">
-    
-
     <ul class="nav nav-mobile-menu" *ngIf="isMobileMenu()">
         <li>
             <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
@@ -14,18 +12,35 @@
                 <p class="hidden-lg hidden-md">Dashboard</p>
             </a>
         </li>
-       
-       
-    </ul>
 
+
+    </ul>
     <div class="nav-container">
+
         <ul class="nav">
-            <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
-                <a  [routerLink]="[menuItem.path]">
-                    <i class="material-icons">{{menuItem.icon}}</i>
-                    <p>{{menuItem.title}}</p>
-                </a>
-            </li>
+            <ng-container *ngFor="let menuItem of menuItems">
+                <li routerLinkActive="active" class="{{menuItem.class}}">
+                    <a  [routerLink]="[menuItem.path]" href="#{{menuItem.divId}}" *ngIf="!menuItem.hasChild">
+                        <i class="material-icons">{{menuItem.icon}}</i>
+                        <p>{{menuItem.title}}</p>
+                    </a>
+                    <a data-toggle="collapse" routerlinkactive="active" href="/#{{menuItem.divId}}" *ngIf="menuItem.hasChild">
+                        <i class="material-icons">{{menuItem.icon}}</i>
+                        <p>{{menuItem.title}}</p>
+                    </a>
+                    <div class="collapse" id="{{menuItem.divId}}" style="" *ngIf="menuItem.hasChild">
+                        <ul class="nav">
+                            <li class="nav-item" routerlinkactive="active" ng-reflect-router-link-active="active" *ngFor="let menuItemchild of menuItem.childs">
+                                <a [routerLink]="[menuItemchild.path]">
+                                    <i class="material-icons">{{menuItemchild.icon}}</i>
+                                    <p>{{menuItemchild.title}}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+               
+            </ng-container>
         </ul>
     </div>
 </div>
