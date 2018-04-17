@@ -51,23 +51,23 @@ export class NavbarComponent implements OnInit {
     };
 
     getTitle() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
+        let titlee = this.location.prepareExternalUrl(this.location.path());
         if (titlee.charAt(0) === '#') {
             titlee = titlee.slice(2);
         }
         titlee = titlee.split('/').pop();
 
-        for (var item = 0; item < this.listTitles.length; item++) {
+        for (let item = 0; item < this.listTitles.length; item++) {
             if (this.listTitles[item].path === titlee) {
-
                 return this.listTitles[item].title;
             }
+            // tslint:disable-next-line:one-line
             else {
                 if (this.listTitles[item].hasChild) {
-                    for (var itemchild = 0; itemchild < this.listTitles[item].childs.length; itemchild++) {
+                    for (let itemchild = 0; itemchild < this.listTitles[item].childs.length; itemchild++) {
                         if (this.listTitles[item].childs[itemchild].path === titlee) {
 
-                            return this.listTitles[item].childs[itemchild].title;
+                            return this.listTitles[item].title + '/' + this.listTitles[item].childs[itemchild].title;
                         }
                     }
                 }
