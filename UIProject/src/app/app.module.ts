@@ -20,10 +20,11 @@ import { testtype } from './components/admin/testtype/testtype.component';
 import { videotype } from './components/admin/videotype/videotype.component';
 import { rmxtype } from './components/admin/rmxtype/rmxtype.component';
 import { FieldErrorDisplayComponent } from './errorDisplay/field-error-display.component';
+import { alertpopservice } from './services/alertpop.service';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,    
+    DashboardComponent,
     TestCaseComponent,
     adddma,
     addrmx,
@@ -33,7 +34,7 @@ import { FieldErrorDisplayComponent } from './errorDisplay/field-error-display.c
     videotype,
     rmxtype,
     FieldErrorDisplayComponent
-         
+
   ],
   imports: [
     BrowserModule,
@@ -42,9 +43,9 @@ import { FieldErrorDisplayComponent } from './errorDisplay/field-error-display.c
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule
   ],
-  providers: [testcaseservice],
+  providers: [testcaseservice, alertpopservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

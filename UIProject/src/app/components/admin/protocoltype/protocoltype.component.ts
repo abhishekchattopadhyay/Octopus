@@ -10,7 +10,7 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { Iprotocol } from '../../../Interface/protocol.interface';
 import { testcaseservice } from '../../../services/testcase.service';
-declare var $: any;
+import { alertpopservice } from '../../../services/alertpop.service';
 @Component({
     selector: 'protocol-type',
     templateUrl: './protocoltype.component.html'
@@ -20,7 +20,7 @@ export class protocoltype implements OnInit {
     _protocols: Iprotocol[];
     loading = true;
     Protocolform: FormGroup;
-    constructor(private _testcaseservice: testcaseservice, private formBuilder: FormBuilder) { }
+    constructor(private _testcaseservice: testcaseservice, private formBuilder: FormBuilder, private _alertservice: alertpopservice) { }
     ngOnInit() {
         this.Protocolform = this.formBuilder.group({
             Protocolname: ['', Validators.required]
@@ -42,20 +42,30 @@ export class protocoltype implements OnInit {
         if (!this.Protocolform.valid) {
             this.validateAllFormFields(this.Protocolform);
         } else {
-            console.log('form submitted');
+            if (this.buttonName === 'Edit') {
+                console.log('form Edited');
+                this.Reset();
+                this._alertservice.successedit();
+            } else {
+                console.log('form submitted');
+                this.Reset();
+                this._alertservice.successsave();
+            }
         }
     }
     EditProtocol(field: string) {
         this.Protocolform.setValue({ Protocolname: field });
         this.buttonName = 'Edit';
     }
-    Reset() {       
+    Reset() {
         this.buttonName = 'Add';
         this.Protocolform.reset();
     }
     DeleteProtocol(field: string) {
-        if (confirm('Are you sure to delete Protocol: ' + field + ' ?')) {
-            console.log('Deleted');
+        if (this._alertservice.alertwithrevert()) {
+            //this._alertservice.sucessDeleted();
+        } else {
+            this._alertservice.canceled();
         }
     }
     validateAllFormFields(formGroup: FormGroup) {

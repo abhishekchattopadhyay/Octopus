@@ -7,7 +7,7 @@
                         <h4 class="title">Add Protocol</h4>
                     </div>
                     <div class="card-content">
-                        <form [formGroup]="Protocolform">
+                        <form [formGroup]="Protocolform" (ngSubmit)="SaveProtocol()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" [ngClass]="displayFieldCss('Protocolname')">
@@ -18,8 +18,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button type="submit" class="btn btn-success mat-raised-button" [disabled]="!Protocolform.valid"  (click)="SaveProtocol()">{{buttonName}}</button>
-                                    <button type="submit" class="btn btn-success mat-raised-button" (click)="Reset()">Reset</button>
+                                    <button type="submit" class="btn btn-success mat-raised-button" [disabled]="!Protocolform.valid">{{buttonName}}</button>
+                                    <button  class="btn btn-success mat-raised-button" (click)="Reset()">Reset</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -31,16 +31,18 @@
 
                                         <table class="table table-hover">
                                             <thead class="text-warning">
+                                                
                                                 <tr>
-                                                    <th>Name</th>
+                                                    <th>S.no.</th>
+                                                    <th style="width:80%">Name</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let protocol of _protocols">
-
+                                                <tr *ngFor="let protocol of _protocols;let i = index;">
+                                                    <td>{{i+1}}</td>
                                                     <td>{{protocol.name}}</td>
-                                                    <td class="td-actions text-right pull-right">
+                                                    <td class="td-actions text-left pull-right">
                                                         <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs" (click)='EditProtocol(protocol.name)'>
                                                             <i class="material-icons">edit</i>
                                                         </button>
