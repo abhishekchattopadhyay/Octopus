@@ -21,6 +21,9 @@ import { videotype } from './components/admin/videotype/videotype.component';
 import { rmxtype } from './components/admin/rmxtype/rmxtype.component';
 import { FieldErrorDisplayComponent } from './errorDisplay/field-error-display.component';
 import { alertpopservice } from './services/alertpop.service';
+import { BrowserXhr } from '@angular/http';
+import { CustExtBrowserXhr } from './cust-ext-browser-xhr';
+import { protocolservice } from './services/protocol.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,7 @@ import { alertpopservice } from './services/alertpop.service';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [testcaseservice, alertpopservice],
+  providers: [testcaseservice,protocolservice, alertpopservice, { provide: BrowserXhr, useClass: CustExtBrowserXhr }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

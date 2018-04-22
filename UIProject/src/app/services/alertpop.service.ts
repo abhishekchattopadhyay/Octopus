@@ -3,9 +3,8 @@ import swal from 'sweetalert2';
 
 @Injectable()
 export class alertpopservice {
-    alertwithrevert(): boolean {
-        let flag: boolean = true;
-        swal({
+    alertwithrevert() {
+        return swal({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             type: 'warning',
@@ -18,44 +17,48 @@ export class alertpopservice {
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false,
             reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                flag = true;
-            } else if (
-                // Read more about handling dismissals
-                result.dismiss === swal.DismissReason.cancel
-            ) {
-                flag = false;
-            }
         });
-        return flag;
     }
-    successsave() {
+    successsave(Item: string) {
         swal(
             'Great job!',
-            'Data saved successfully!',
+            Item + ' saved successfully!',
             'success'
         );
     }
-    successedit() {
+    successedit(Item: string) {
         swal(
             'Great job!',
-            'Data edited successfully!',
+            Item + ' edited successfully!',
             'success'
         );
     }
-    sucessDeleted() {
+    sucessDeleted(Item: string) {
         swal(
             'Deleted!',
-            'Your file has been deleted.',
+            Item + ' deleted successfully!',
             'success'
         );
     }
-    canceled() {
+    canceled(Item: string) {
         swal(
             'Cancelled',
-            'Your imaginary file is safe :)',
+            'Your ' + Item + ' is safe :)',
             'error'
         );
+    }
+    errorOccurred() {
+        swal({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+        });
+    }
+    infoAlert(info: string) {
+        swal({
+            title: info,
+            animation: false,
+            customClass: 'animated tada'
+        });
     }
 }

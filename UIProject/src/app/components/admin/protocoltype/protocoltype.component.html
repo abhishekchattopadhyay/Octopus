@@ -24,10 +24,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div *ngIf="loading">
+                                    <div *ngIf="!_protocols">
                                         Loading, please wait...
                                     </div>
-                                    <div *ngIf="!loading">
+                                    <div *ngIf="_protocols">
 
                                         <table class="table table-hover">
                                             <thead class="text-warning">
@@ -39,14 +39,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let protocol of _protocols;let i = index;">
+                                                <tr  *ngFor="let protocol of _protocols;let i = index;">
                                                     <td>{{i+1}}</td>
-                                                    <td>{{protocol.name}}</td>
+                                                    <td>{{protocol}}</td>
                                                     <td class="td-actions text-left pull-right">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs" (click)='EditProtocol(protocol.name)'>
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs" (click)='EditProtocol(protocol)'>
                                                             <i class="material-icons">edit</i>
                                                         </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)='DeleteProtocol(protocol.name)'>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)='DeleteProtocol(protocol)'>
                                                             <i class="material-icons">close</i>
                                                         </button>
                                                     </td>

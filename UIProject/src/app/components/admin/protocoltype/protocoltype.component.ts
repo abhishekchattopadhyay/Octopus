@@ -9,24 +9,30 @@ import {
 } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Iprotocol } from '../../../Interface/protocol.interface';
-import { testcaseservice } from '../../../services/testcase.service';
+import { protocolservice } from '../../../services/protocol.service';
 import { alertpopservice } from '../../../services/alertpop.service';
+import { Response } from '@angular/http';
+import swal from 'sweetalert2';
 @Component({
     selector: 'protocol-type',
     templateUrl: './protocoltype.component.html'
 })
 export class protocoltype implements OnInit {
     buttonName = 'Add';
+    _modulestrName = 'Protocol';
     _protocols: Iprotocol[];
-    loading = true;
     Protocolform: FormGroup;
-    constructor(private _testcaseservice: testcaseservice, private formBuilder: FormBuilder, private _alertservice: alertpopservice) { }
+    constructor(private _testcaseservice: protocolservice, private formBuilder: FormBuilder, private _alertservice: alertpopservice) { }
     ngOnInit() {
         this.Protocolform = this.formBuilder.group({
-            Protocolname: ['', Validators.required]
+            Protocolname: ['', Validators.required],
+            ProtocolOldname: ['']
         });
-        this._protocols = this._testcaseservice.getProtocol();
-        this.loading = false;
+        this.RefereshProtocolList();
+    }
+    RefereshProtocolList() {
+        this._testcaseservice.getProtocol()
+            .subscribe((protocoldata) => this._protocols = protocoldata, (error) => { console.log(error) });
     }
     isFieldValid(field: string) {
         return !this.Protocolform.get(field).valid && this.Protocolform.get(field).touched;
@@ -42,19 +48,52 @@ export class protocoltype implements OnInit {
         if (!this.Protocolform.valid) {
             this.validateAllFormFields(this.Protocolform);
         } else {
+            let PoldName = this.Protocolform.get('ProtocolOldname').value,
+                PnewName = this.Protocolform.get('Protocolname').value;
             if (this.buttonName === 'Edit') {
-                console.log('form Edited');
-                this.Reset();
-                this._alertservice.successedit();
+                if (PoldName === '') {
+                    this._alertservice.errorOccurred();
+                    return;
+                } else if (PoldName === PnewName) {
+                    this._alertservice.infoAlert('Please change the Protocol name before saving');
+                    return;
+                }
+                this._testcaseservice.putProtocol(PnewName, PoldName)
+                    .subscribe((response: Response) => {
+                        if (response.status === 201) {
+                            console.log(response);
+                            console.log('form Edited');
+                            this.Reset();
+                            this.RefereshProtocolList();
+                            this._alertservice.successedit(this._modulestrName);
+                        } else {
+                            console.log(response.status);
+                            this._alertservice.errorOccurred();
+                        }
+                    }
+                    );
             } else {
-                console.log('form submitted');
-                this.Reset();
-                this._alertservice.successsave();
+                this._testcaseservice.postProtocol(this.Protocolform.get('Protocolname').value)
+                    .subscribe((response: Response) => {
+                        if (response.status === 201) {
+                            console.log(response);
+                            console.log('form submitted');
+                            this.Reset();
+                            this.RefereshProtocolList();
+                            this._alertservice.successsave(this._modulestrName);
+                        } else {
+                            console.log(response.status);
+                            this._alertservice.errorOccurred();
+                        }
+
+                    }
+                    );
+
             }
         }
     }
     EditProtocol(field: string) {
-        this.Protocolform.setValue({ Protocolname: field });
+        this.Protocolform.setValue({ Protocolname: field, ProtocolOldname: field });
         this.buttonName = 'Edit';
     }
     Reset() {
@@ -62,11 +101,28 @@ export class protocoltype implements OnInit {
         this.Protocolform.reset();
     }
     DeleteProtocol(field: string) {
-        if (this._alertservice.alertwithrevert()) {
-            //this._alertservice.sucessDeleted();
-        } else {
-            this._alertservice.canceled();
-        }
+        console.log(field);
+        this._alertservice.alertwithrevert().then((result) => {
+            if (result.value) {
+                this._testcaseservice.deleteProtocol(field)
+                    .subscribe((response: Response) => {
+                        if (response.status === 201) {
+                            console.log(response);
+                            console.log('Item deleted');
+                            this.Reset();
+                            this.RefereshProtocolList();
+                            this._alertservice.sucessDeleted(this._modulestrName);
+                        } else {
+                            console.log(response.status);
+                            this._alertservice.errorOccurred();
+                        }
+
+                    }
+                    );
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                this._alertservice.canceled(this._modulestrName);
+            }
+        });
     }
     validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {

@@ -18,15 +18,16 @@ export class TestCaseComponent implements OnInit {
   _rmxtype: Irmxtype[];
   _testcasedefault: Itestcase[];
   _videotype: Ivideotype[];
-  _testtype:Itesttype[];
+  _testtype: Itesttype[];
 
   constructor(private _testcaseservice: testcaseservice) { }
   ngOnInit() {
     this._choice = this._testcaseservice.getChoice();
-    this._protocol = this._testcaseservice.getProtocol();
+    this._testcaseservice.getProtocol()
+      .subscribe((response) => this._protocol = response);
     this._rmxtype = this._testcaseservice.getRMXType();
     this._videotype = this._testcaseservice.getVideoType();
-    this._testtype=this._testcaseservice.getTestType();
+    this._testtype = this._testcaseservice.getTestType();
   }
   getDefaultTestCase(): Itestcase {
     return {
@@ -51,7 +52,7 @@ export class TestCaseComponent implements OnInit {
       sipSecondaryUserPassword: "",
       testType: { name: "", value: "" },
       videoType: { name: "", value: "" },
-      protocolType: { name: "", value: "" },
+      protocolType: { name: "" },
       onFailureRestart: { name: "", value: "" },
       recurrence: { name: "", value: "" },
       rate: "",

@@ -14,12 +14,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "elementtree": "^0.1.7",
     "express": "^4.16.3",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
     "json-query": "^2.2.2",
-    "lodash": "^4.17.5",    
+    "lodash": "^4.17.5",
     "xml2js": "^0.4.19",
     "xmldom": "^0.1.27"
   }
