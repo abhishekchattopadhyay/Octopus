@@ -1,0 +1,138 @@
+var express = require('express'),
+    fs = require('fs'),
+    xml2js = require('xml2js'),
+    _ = require('lodash'),
+    xmldom = require('xmldom'),
+    parser = new xml2js.Parser({ explicitArray: false }),
+    xmlBuilder = new xml2js.Builder(),
+    DOMParser = xmldom.DOMParser,
+    XMLSerializer = xmldom.XMLSerializer,
+    serializer = new XMLSerializer(),
+    VideoTypeRouter = express.Router();
+
+const VideoTypeFilePath = '../automation/xml/options/videoType.xml';
+
+VideoTypeRouter.route('/Videotype')
+    .get(function (req, res) {
+        fs.readFile(VideoTypeFilePath, function (err, data) {
+            parser.parseString(data, function (err, jresult) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                else {
+
+                    res.status(200).json(jresult.VIDEO.TYPE);
+                }
+            });
+        });
+    })
+    .post(function (req, res) {
+        try {
+            var xmlString = fs.readFileSync(VideoTypeFilePath, 'utf-8');
+            console.log(xmlString);
+            var doc;
+            doc = new DOMParser().parseFromString(xmlString, 'application/xml');
+            var newEle = doc.createElement("TYPE");
+            var newText = doc.createTextNode(req.body.type);
+            newEle.appendChild(newText);
+            doc.getElementsByTagName("VIDEO")[0].appendChild(newEle);
+            console.log(serializer.serializeToString(doc));
+            fs.writeFileSync(VideoTypeFilePath, serializer.serializeToString(doc));
+            res.status(201).send('Added Value:' + req.body.type);
+        }
+        catch (ex) {
+            res.status(500).send(ex);
+        }
+    })
+    .put(function (req, res) {
+        try {
+            var xmlString = fs.readFileSync(VideoTypeFilePath, 'utf-8'),
+                doc,
+                flag = false,
+                Message,
+                doc = new DOMParser().parseFromString(xmlString, 'application/xml'),
+                Element = doc.getElementsByTagName('TYPE'),
+                //New Element creation
+                NewElement = doc.createElement("TYPE"),
+                newText = doc.createTextNode(req.body.newtype);
+            NewElement.appendChild(newText);
+            for (let i = 0; i < Element.length; i++) {
+                if (serializer.serializeToString(Element[i].childNodes[0]) === req.body.oldtype) {
+                    doc.documentElement.replaceChild(NewElement, Element[i]);
+                    flag = true;
+                }
+            }
+            if (flag === true) {
+                fs.writeFileSync(VideoTypeFilePath, serializer.serializeToString(doc));
+                console.log(serializer.serializeToString(doc));
+                Message = 'Item Upadted Success:' + req.body.newtype;
+            }
+            else {
+                Message = 'No such item found in list:' + req.body.oldtype;
+            }
+            //console.log(req.body.newname);
+            res.status(201).send(Message);
+        }
+        catch (ex) {
+            res.status(500).send(ex);
+        }
+    })
+    .delete(function (req, res) {
+        try {
+            var xmlString = fs.readFileSync(VideoTypeFilePath, 'utf-8'),
+                doc,
+                flag = false,
+                Message,
+                doc = new DOMParser().parseFromString(xmlString, 'application/xml'),
+                Element = doc.getElementsByTagName('TYPE');
+            console.log(Element.length);
+            for (let i = 0; i < Element.length; i++) {
+                console.log(i);
+                console.log(serializer.serializeToString(Element[i]));
+                console.log(serializer.serializeToString(Element[i].childNodes[0]));
+                if (serializer.serializeToString(Element[i].childNodes[0]) === req.body.type) {
+                    doc.documentElement.removeChild(Element[i]);
+                    flag = true;
+                }
+            }
+            if (flag === true) {
+                fs.writeFileSync(VideoTypeFilePath, serializer.serializeToString(doc));
+                console.log(serializer.serializeToString(doc));
+                Message = 'Item deteled Success:' + req.body.type;
+            }
+            else {
+                Message = 'No such item found in list:' + req.body.type;
+            }
+
+            res.status(201).send(Message);
+        }
+        catch (ex) {
+            res.status(500).send(ex);
+        }
+
+    });
+VideoTypeRouter.route('/Videotype/:type')
+    .get(function (req, res) {
+        try {
+            fs.readFile(VideoTypeFilePath, function (err, data) {
+                parser.parseString(data, function (err, jresult) {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                    else {
+                        var result;
+                        if (req.params.type) {
+                            result = _.filter(jresult.VIDEO.TYPE, function (item) {
+                                return item == req.params.type;
+                            });
+                        }
+                        res.status(200).json(result);
+                    }
+                });
+            });
+        } catch (ex) {
+            res.status(500).send(ex);
+        }
+    });
+
+module.exports = VideoTypeRouter;

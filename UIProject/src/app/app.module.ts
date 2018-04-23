@@ -24,6 +24,9 @@ import { alertpopservice } from './services/alertpop.service';
 import { BrowserXhr } from '@angular/http';
 import { CustExtBrowserXhr } from './cust-ext-browser-xhr';
 import { protocolservice } from './services/protocol.service';
+import { rmxtypeservice } from './services/rmxtype.service';
+import { testtypeservice } from './services/testtype.service';
+import { videotypeservice } from './services/videotype.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,14 @@ import { protocolservice } from './services/protocol.service';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [testcaseservice,protocolservice, alertpopservice, { provide: BrowserXhr, useClass: CustExtBrowserXhr }],
+  providers: [
+              testcaseservice,
+              protocolservice,
+              rmxtypeservice,
+              testtypeservice,
+              videotypeservice,
+              alertpopservice
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="green">
+                        <h4 class="title">Add Video Type</h4>
+                    </div>
+                    <div class="card-content">
+                        <form [formGroup]="VideoTypeform" (ngSubmit)="SaveVideotype()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" [ngClass]="displayFieldCss('Videotype')">
+                                        <label class="control-label">Video Type</label>
+                                        <input id="name" type="text" class="form-control" formControlName="Videotype" />
+                                        <app-field-error-display [displayError]="isFieldValid('Videotype')" errorMsg="Video Type is required!">
+                                        </app-field-error-display>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success mat-raised-button" [disabled]="!VideoTypeform.valid">{{buttonName}}</button>
+                                    <button  class="btn btn-success mat-raised-button" (click)="Reset()">Reset</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div *ngIf="!_videotype">
+                                        Loading, please wait...
+                                    </div>
+                                    <div *ngIf="_videotype">
+
+                                        <table class="table table-hover">
+                                            <thead class="text-warning">
+                                                
+                                                <tr>
+                                                    <th>S.no.</th>
+                                                    <th style="width:80%">Name</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr  *ngFor="let videotype of _videotype;let i = index;">
+                                                    <td>{{i+1}}</td>
+                                                    <td>{{videotype}}</td>
+                                                    <td class="td-actions text-left pull-right">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs" (click)='EditVideotype(videotype)'>
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)='DeleteVideotype(videotype)'>
+                                                            <i class="material-icons">close</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

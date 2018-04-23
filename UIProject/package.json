@@ -23,6 +23,7 @@
     "@angular/platform-server": "4.4.4",
     "@angular/router": "4.4.4",
     "angular-sweetalert-service": "^2.0.2",
+    "animate.css": "^3.6.1",
     "arrive": "2.4.1",
     "bootstrap": "3.3.7",
     "bootstrap-confirmation2": "^2.4.1",

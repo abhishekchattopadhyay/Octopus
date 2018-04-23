@@ -14,6 +14,9 @@ app.use(function(req, res, next) {
     next();
 });
 var ProtocolRouter = require('./api/protocol');
+var RmxTypeRouter = require('./api/rmxtype');
+var TestTypeRouter = require('./api/testtype');
+var VideoTypeRouter = require('./api/videotype');
 var originsWhitelist = [
     'http://localhost:4200',      //this is my front-end url for development
     'http://www.URL.com'
@@ -28,6 +31,9 @@ var corsOptions = {
 //here is the magic
 app.use(cors(corsOptions));
 app.use('/api', ProtocolRouter);
+app.use('/api', RmxTypeRouter);
+app.use('/api', TestTypeRouter);
+app.use('/api', VideoTypeRouter);
 app.get('/', function (req, res) {
     res.status(202).send('Welcome to my TestRunner API');
 });

@@ -6,6 +6,7 @@ import { Irmxtype } from '../Interface/rmxtype.interface';
 import { Itestcase } from '../Interface/testcase.interface';
 import { Ivideotype } from '../Interface/videotype.interface';
 import { Itesttype } from '../Interface/testtype.interface';
+import { protocolservice } from '../services/protocol.service';
 
 @Component({
   selector: 'app-test-case',
@@ -20,10 +21,10 @@ export class TestCaseComponent implements OnInit {
   _videotype: Ivideotype[];
   _testtype: Itesttype[];
 
-  constructor(private _testcaseservice: testcaseservice) { }
+  constructor(private _testcaseservice: testcaseservice, private _protocolservice: protocolservice) { }
   ngOnInit() {
     this._choice = this._testcaseservice.getChoice();
-    this._testcaseservice.getProtocol()
+    this._protocolservice.getProtocol()
       .subscribe((response) => this._protocol = response);
     this._rmxtype = this._testcaseservice.getRMXType();
     this._videotype = this._testcaseservice.getVideoType();
@@ -38,7 +39,7 @@ export class TestCaseComponent implements OnInit {
       durationMinute: "",
       durationSecond: "",
       rmxIP: "",
-      rmxType: { name: "", value: "" },
+      rmxType: [],
       rmxBuild: "",
       rmxUser: "",
       rmxPassword: "",
@@ -50,11 +51,11 @@ export class TestCaseComponent implements OnInit {
       sippSecondaryIP: "",
       sippSecondaryUser: "",
       sipSecondaryUserPassword: "",
-      testType: { name: "", value: "" },
-      videoType: { name: "", value: "" },
-      protocolType: { name: "" },
-      onFailureRestart: { name: "", value: "" },
-      recurrence: { name: "", value: "" },
+      testType: [""],
+      videoType: [""],
+      protocolType: [""],
+      onFailureRestart: [""],
+      recurrence: [""],
       rate: "",
       holdTime: "",
       fr: "",

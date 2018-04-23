@@ -22,7 +22,7 @@ export class protocoltype implements OnInit {
     _modulestrName = 'Protocol';
     _protocols: Iprotocol[];
     Protocolform: FormGroup;
-    constructor(private _testcaseservice: protocolservice, private formBuilder: FormBuilder, private _alertservice: alertpopservice) { }
+    constructor(private _protocolservice: protocolservice, private formBuilder: FormBuilder, private _alertservice: alertpopservice) { }
     ngOnInit() {
         this.Protocolform = this.formBuilder.group({
             Protocolname: ['', Validators.required],
@@ -31,7 +31,7 @@ export class protocoltype implements OnInit {
         this.RefereshProtocolList();
     }
     RefereshProtocolList() {
-        this._testcaseservice.getProtocol()
+        this._protocolservice.getProtocol()
             .subscribe((protocoldata) => this._protocols = protocoldata, (error) => { console.log(error) });
     }
     isFieldValid(field: string) {
@@ -58,7 +58,7 @@ export class protocoltype implements OnInit {
                     this._alertservice.infoAlert('Please change the Protocol name before saving');
                     return;
                 }
-                this._testcaseservice.putProtocol(PnewName, PoldName)
+                this._protocolservice.putProtocol(PnewName, PoldName)
                     .subscribe((response: Response) => {
                         if (response.status === 201) {
                             console.log(response);
@@ -73,7 +73,7 @@ export class protocoltype implements OnInit {
                     }
                     );
             } else {
-                this._testcaseservice.postProtocol(this.Protocolform.get('Protocolname').value)
+                this._protocolservice.postProtocol(this.Protocolform.get('Protocolname').value)
                     .subscribe((response: Response) => {
                         if (response.status === 201) {
                             console.log(response);
@@ -104,7 +104,7 @@ export class protocoltype implements OnInit {
         console.log(field);
         this._alertservice.alertwithrevert().then((result) => {
             if (result.value) {
-                this._testcaseservice.deleteProtocol(field)
+                this._protocolservice.deleteProtocol(field)
                     .subscribe((response: Response) => {
                         if (response.status === 201) {
                             console.log(response);

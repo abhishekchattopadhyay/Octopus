@@ -58,7 +58,7 @@ export class alertpopservice {
         swal({
             title: info,
             animation: false,
-            customClass: 'animated tada'
+            customClass: 'animated wobble'
         });
     }
 }
