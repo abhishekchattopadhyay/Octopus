@@ -11,6 +11,7 @@ import { protocoltype } from './components/admin/protocoltype/protocoltype.compo
 import { testtype } from './components/admin/testtype/testtype.component';
 import { videotype } from './components/admin/videotype/videotype.component';
 import { rmxtype } from './components/admin/rmxtype/rmxtype.component';
+import { addmodule } from './components/admin/addmodule/addmodule.component';
 
 
 const routes: Routes =[
@@ -22,7 +23,8 @@ const routes: Routes =[
     { path: 'protocol-type',             component:protocoltype               },
     { path: 'test-type',                 component:testtype                   },
     { path: 'video-type',                component:videotype                  }, 
-    { path: 'rmx-type',                component:rmxtype                  },
+    { path: 'rmx-type',                component:rmxtype                      },
+    { path: 'add-module',                component:addmodule                  },
     { path: '',                    redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 

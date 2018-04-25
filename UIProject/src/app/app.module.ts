@@ -27,6 +27,8 @@ import { protocolservice } from './services/protocol.service';
 import { rmxtypeservice } from './services/rmxtype.service';
 import { testtypeservice } from './services/testtype.service';
 import { videotypeservice } from './services/videotype.service';
+import { moduleservice } from './services/module.service';
+import { addmodule } from './components/admin/addmodule/addmodule.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,7 @@ import { videotypeservice } from './services/videotype.service';
     testtype,
     videotype,
     rmxtype,
+    addmodule,
     FieldErrorDisplayComponent
 
   ],
@@ -57,7 +60,8 @@ import { videotypeservice } from './services/videotype.service';
               rmxtypeservice,
               testtypeservice,
               videotypeservice,
-              alertpopservice
+              alertpopservice,
+              moduleservice
             ],
   bootstrap: [AppComponent]
 })

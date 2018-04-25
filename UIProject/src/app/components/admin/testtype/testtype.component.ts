@@ -14,10 +14,10 @@ import { alertpopservice } from '../../../services/alertpop.service';
 import { Response } from '@angular/http';
 import swal from 'sweetalert2';
 @Component({
-    selector:'test-type',
-    templateUrl:'./testtype.component.html'
+    selector: 'test-type',
+    templateUrl: './testtype.component.html'
 })
-export class testtype{
+export class testtype {
     buttonName = 'Add';
     _modulestrName = 'Test type';
     _testtype: Itesttype[];
@@ -32,7 +32,7 @@ export class testtype{
     }
     RefereshTesttypeList() {
         this._testtypeservice.getTestType()
-            .subscribe((testtypedata) => this._testtype = testtypedata, (error) => { console.log(error) });
+            .subscribe((testtypedata) => this._testtype = testtypedata, (error) => { this._testtype = []; console.log(error) });
     }
     isFieldValid(field: string) {
         return !this.TestTypeform.get(field).valid && this.TestTypeform.get(field).touched;

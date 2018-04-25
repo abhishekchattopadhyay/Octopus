@@ -16,15 +16,18 @@ declare interface RouteInfo {
     childs?: rootChildren[];
     divId?: string;
 }
-let adminChild: rootChildren[] = [{ path: 'protocol-type', title: 'Protocol', icon: 'class', class: '' },
-                                  { path: 'rmx-type', title: 'RMX Type', icon: 'storage', class: '' },
-                                  { path: 'add-rmx', title: 'Add RMX', icon: 'event available', class: '' },
-                                  { path: 'test-type', title: 'Test Type', icon: 'assignment', class: '' },
-                                  { path: 'video-type', title: 'Video Type', icon: 'slideshow', class: '' },
-                                  { path: 'add-dma', title: 'Add DMA', icon: 'event available', class: '' }];
+let adminChild: rootChildren[] = [
+    { path: 'protocol-type', title: 'Protocol', icon: 'class', class: '' },
+    { path: 'rmx-type', title: 'RMX Type', icon: 'storage', class: '' },
+    { path: 'add-rmx', title: 'Add RMX', icon: 'event available', class: '' },
+    { path: 'test-type', title: 'Test Type', icon: 'assignment', class: '' },
+    { path: 'video-type', title: 'Video Type', icon: 'slideshow', class: '' },
+    { path: 'add-dma', title: 'Add DMA', icon: 'event available', class: '' },
+    { path: 'add-module', title: 'Add Module', icon: 'dns', class: '' }
+];
 export const ROUTES: RouteInfo[] = [
     { path: 'dashboard', title: 'Dashboard', icon: 'dashboard', class: '', hasChild: false },
-    { path: '#', title: 'Admin', icon: 'apps', class: '', hasChild: true, childs:adminChild, divId: "adminChild" },
+    { path: '#', title: 'Admin', icon: 'apps', class: '', hasChild: true, childs: adminChild, divId: "adminChild" },
     { path: 'test-case', title: 'Add New Test', icon: 'content_paste', class: '', hasChild: false }
 ];
 

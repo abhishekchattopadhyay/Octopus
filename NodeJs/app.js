@@ -3,7 +3,7 @@ var express = require('express'),
 cors = require('cors');
 var app = express();
 
-var port = process.env.Port || 3000;
+var port = process.env.Port || 8000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function(req, res, next) {
@@ -17,6 +17,7 @@ var ProtocolRouter = require('./api/protocol');
 var RmxTypeRouter = require('./api/rmxtype');
 var TestTypeRouter = require('./api/testtype');
 var VideoTypeRouter = require('./api/videotype');
+var ModuleRouter = require('./api/modules');
 var originsWhitelist = [
     'http://localhost:4200',      //this is my front-end url for development
     'http://www.URL.com'
@@ -34,6 +35,7 @@ app.use('/api', ProtocolRouter);
 app.use('/api', RmxTypeRouter);
 app.use('/api', TestTypeRouter);
 app.use('/api', VideoTypeRouter);
+app.use('/api', ModuleRouter);
 app.get('/', function (req, res) {
     res.status(202).send('Welcome to my TestRunner API');
 });

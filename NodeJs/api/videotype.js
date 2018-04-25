@@ -3,17 +3,20 @@ var express = require('express'),
     xml2js = require('xml2js'),
     _ = require('lodash'),
     xmldom = require('xmldom'),
-    parser = new xml2js.Parser({ explicitArray: false }),
+    parser = new xml2js.Parser(),
     xmlBuilder = new xml2js.Builder(),
     DOMParser = xmldom.DOMParser,
     XMLSerializer = xmldom.XMLSerializer,
     serializer = new XMLSerializer(),
-    VideoTypeRouter = express.Router();
+    VideoTypeRouter = express.Router() ,
+    mkdirp = require('mkdirp');
+    const directory = '../automation/xml/options';
 
 const VideoTypeFilePath = '../automation/xml/options/videoType.xml';
 
 VideoTypeRouter.route('/Videotype')
     .get(function (req, res) {
+        if (fs.existsSync(VideoTypeFilePath)) {
         fs.readFile(VideoTypeFilePath, function (err, data) {
             parser.parseString(data, function (err, jresult) {
                 if (err) {
@@ -24,7 +27,29 @@ VideoTypeRouter.route('/Videotype')
                     res.status(200).json(jresult.VIDEO.TYPE);
                 }
             });
-        });
+        });}
+        else {
+            console.log("Directory not Present");
+            mkdirp(directory, function (err) {
+                if (err) console.error(err)
+                else {
+                    fs.writeFileSync(VideoTypeFilePath, '<VIDEO></VIDEO>');
+                    console.log('Directory created');
+                    fs.readFile(VideoTypeFilePath, function (err, data) {
+                        parser.parseString(data, function (err, jresult) {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else {
+
+                                res.status(200).json(jresult.VIDEO.TYPE);
+                            }
+                        });
+                    });
+
+                }
+            });
+        }
     })
     .post(function (req, res) {
         try {

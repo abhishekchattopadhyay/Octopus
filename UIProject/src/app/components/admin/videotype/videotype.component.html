@@ -27,7 +27,10 @@
                                     <div *ngIf="!_videotype">
                                         Loading, please wait...
                                     </div>
-                                    <div *ngIf="_videotype">
+                                    <div *ngIf="_videotype && _videotype.length===0" >
+                                        No item exists..
+                                    </div>
+                                    <div *ngIf="_videotype && _videotype.length>0">
 
                                         <table class="table table-hover">
                                             <thead class="text-warning">

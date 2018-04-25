@@ -8,23 +8,23 @@ var express = require('express'),
     DOMParser = xmldom.DOMParser,
     XMLSerializer = xmldom.XMLSerializer,
     serializer = new XMLSerializer(),
-    RmxTypeRouter = express.Router(),
+    ModuleRouter = express.Router(),
     mkdirp = require('mkdirp');
 const directory = '../automation/xml/options';
-const RmxTypeFilePath = '../automation/xml/options/rmxTypes.xml';
+const ModuleFilePath = '../automation/xml/options/module.xml';
 
-RmxTypeRouter.route('/RmxType')
+ModuleRouter.route('/Module')
     .get(function (req, res) {
-        if (fs.existsSync(RmxTypeFilePath)) {
+        if (fs.existsSync(ModuleFilePath)) {
             console.log("Directory Present");
-            fs.readFile(RmxTypeFilePath, function (err, data) {
+            fs.readFile(ModuleFilePath, function (err, data) {
                 parser.parseString(data, function (err, jresult) {
                     if (err) {
                         res.status(500).send(err);
                     }
                     else {
 
-                        res.status(200).json(jresult.RMX_TYPES.TYPE);
+                        res.status(200).json(jresult.MODULE.NAME);
                     }
                 });
             });
@@ -34,37 +34,39 @@ RmxTypeRouter.route('/RmxType')
             mkdirp(directory, function (err) {
                 if (err) console.error(err)
                 else {
-                    fs.writeFileSync(RmxTypeFilePath, '<RMX_TYPES></RMX_TYPES>');
+                    fs.writeFileSync(ModuleFilePath, '<MODULE></MODULE>');
                     console.log('Directory created');
-                    fs.readFile(RmxTypeFilePath, function (err, data) {
+                    fs.readFile(ModuleFilePath, function (err, data) {
                         parser.parseString(data, function (err, jresult) {
                             if (err) {
                                 res.status(500).send(err);
                             }
                             else {
 
-                                res.status(200).json(jresult.RMX_TYPES.TYPE);
+                                res.status(200).json(jresult.MODULE.NAME);
                             }
                         });
                     });
 
                 }
             });
+
+
         }
     })
     .post(function (req, res) {
         try {
-            var xmlString = fs.readFileSync(RmxTypeFilePath, 'utf-8');
+            var xmlString = fs.readFileSync(ModuleFilePath, 'utf-8');
             console.log(xmlString);
             var doc;
             doc = new DOMParser().parseFromString(xmlString, 'application/xml');
-            var newEle = doc.createElement("TYPE");
-            var newText = doc.createTextNode(req.body.type);
+            var newEle = doc.createElement("NAME");
+            var newText = doc.createTextNode(req.body.name);
             newEle.appendChild(newText);
-            doc.getElementsByTagName("RMX_TYPES")[0].appendChild(newEle);
+            doc.getElementsByTagName("MODULE")[0].appendChild(newEle);
             console.log(serializer.serializeToString(doc));
-            fs.writeFileSync(RmxTypeFilePath, serializer.serializeToString(doc));
-            res.status(201).send('Added Value:' + req.body.type);
+            fs.writeFileSync(ModuleFilePath, serializer.serializeToString(doc));
+            res.status(201).send('Added Value:' + req.body.name);
         }
         catch (ex) {
             res.status(500).send(ex);
@@ -72,29 +74,29 @@ RmxTypeRouter.route('/RmxType')
     })
     .put(function (req, res) {
         try {
-            var xmlString = fs.readFileSync(RmxTypeFilePath, 'utf-8'),
+            var xmlString = fs.readFileSync(ModuleFilePath, 'utf-8'),
                 doc,
                 flag = false,
                 Message,
                 doc = new DOMParser().parseFromString(xmlString, 'application/xml'),
-                Element = doc.getElementsByTagName('TYPE'),
+                Element = doc.getElementsByTagName('NAME'),
                 //New Element creation
-                NewElement = doc.createElement("TYPE"),
-                newText = doc.createTextNode(req.body.newtype);
+                NewElement = doc.createElement("NAME"),
+                newText = doc.createTextNode(req.body.newname);
             NewElement.appendChild(newText);
             for (let i = 0; i < Element.length; i++) {
-                if (serializer.serializeToString(Element[i].childNodes[0]) === req.body.oldtype) {
+                if (serializer.serializeToString(Element[i].childNodes[0]) === req.body.oldname) {
                     doc.documentElement.replaceChild(NewElement, Element[i]);
                     flag = true;
                 }
             }
             if (flag === true) {
-                fs.writeFileSync(RmxTypeFilePath, serializer.serializeToString(doc));
+                fs.writeFileSync(ModuleFilePath, serializer.serializeToString(doc));
                 console.log(serializer.serializeToString(doc));
-                Message = 'Item Upadted Success:' + req.body.newtype;
+                Message = 'Item Upadted Success:' + req.body.newname;
             }
             else {
-                Message = 'No such item found in list:' + req.body.oldtype;
+                Message = 'No such item found in list:' + req.body.oldname;
             }
             //console.log(req.body.newname);
             res.status(201).send(Message);
@@ -105,29 +107,29 @@ RmxTypeRouter.route('/RmxType')
     })
     .delete(function (req, res) {
         try {
-            var xmlString = fs.readFileSync(RmxTypeFilePath, 'utf-8'),
+            var xmlString = fs.readFileSync(ModuleFilePath, 'utf-8'),
                 doc,
                 flag = false,
                 Message,
                 doc = new DOMParser().parseFromString(xmlString, 'application/xml'),
-                Element = doc.getElementsByTagName('TYPE');
+                Element = doc.getElementsByTagName('NAME');
             console.log(Element.length);
             for (let i = 0; i < Element.length; i++) {
                 console.log(i);
                 console.log(serializer.serializeToString(Element[i]));
                 console.log(serializer.serializeToString(Element[i].childNodes[0]));
-                if (serializer.serializeToString(Element[i].childNodes[0]) === req.body.type) {
+                if (serializer.serializeToString(Element[i].childNodes[0]) === req.body.name) {
                     doc.documentElement.removeChild(Element[i]);
                     flag = true;
                 }
             }
             if (flag === true) {
-                fs.writeFileSync(RmxTypeFilePath, serializer.serializeToString(doc));
+                fs.writeFileSync(ModuleFilePath, serializer.serializeToString(doc));
                 console.log(serializer.serializeToString(doc));
-                Message = 'Item deteled Success:' + req.body.type;
+                Message = 'Item deteled Success:' + req.body.name;
             }
             else {
-                Message = 'No such item found in list:' + req.body.type;
+                Message = 'No such item found in list:' + req.body.name;
             }
 
             res.status(201).send(Message);
@@ -137,19 +139,19 @@ RmxTypeRouter.route('/RmxType')
         }
 
     });
-RmxTypeRouter.route('/RmxType/:type')
+ModuleRouter.route('/getModuleByName/:name')
     .get(function (req, res) {
         try {
-            fs.readFile(RmxTypeFilePath, function (err, data) {
+            fs.readFile(ModuleFilePath, function (err, data) {
                 parser.parseString(data, function (err, jresult) {
                     if (err) {
                         res.status(500).send(err);
                     }
                     else {
                         var result;
-                        if (req.params.type) {
-                            result = _.filter(jresult.RMX_TYPES.TYPE, function (item) {
-                                return item == req.params.type;
+                        if (req.params.name) {
+                            result = _.filter(jresult.MODULE.NAME, function (item) {
+                                return item == req.params.name;
                             });
                         }
                         res.status(200).json(result);
@@ -161,4 +163,4 @@ RmxTypeRouter.route('/RmxType/:type')
         }
     });
 
-module.exports = RmxTypeRouter;
+module.exports = ModuleRouter;

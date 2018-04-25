@@ -27,7 +27,10 @@
                                     <div *ngIf="!_protocols">
                                         Loading, please wait...
                                     </div>
-                                    <div *ngIf="_protocols">
+                                    <div *ngIf="_protocols && _protocols.length===0" >
+                                        No item exists..
+                                    </div>
+                                    <div *ngIf="_protocols && _protocols.length>0">
 
                                         <table class="table table-hover">
                                             <thead class="text-warning">

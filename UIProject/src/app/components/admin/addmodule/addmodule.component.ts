@@ -8,35 +8,34 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Ivideotype } from '../../../Interface/videotype.interface';
-import { videotypeservice } from '../../../services/videotype.service';
+import { Imodule } from '../../../Interface/module.interface';
+import { moduleservice } from '../../../services/module.service';
 import { alertpopservice } from '../../../services/alertpop.service';
 import { Response } from '@angular/http';
 import swal from 'sweetalert2';
-
 @Component({
-    selector: 'video-type',
-    templateUrl: './videotype.component.html'
+    selector: 'add-module',
+    templateUrl: './addmodule.component.html'
 })
-export class videotype {
+export class addmodule implements OnInit {
     buttonName = 'Add';
-    _modulestrName = 'Video type';
-    _videotype: Ivideotype[];
-    VideoTypeform: FormGroup;
-    constructor(private _videotypeservice: videotypeservice, private formBuilder: FormBuilder, private _alertservice: alertpopservice) { }
+    _modulestrName = 'Module';
+    _modules: Imodule[];
+    Moduleform: FormGroup;
+    constructor(private _moduleservice: moduleservice, private formBuilder: FormBuilder, private _alertservice: alertpopservice) { }
     ngOnInit() {
-        this.VideoTypeform = this.formBuilder.group({
-            Videotype: ['', Validators.required],
-            VideoOldtype: ['']
+        this.Moduleform = this.formBuilder.group({
+            Modulename: ['', Validators.required],
+            ModuleOldname: ['']
         });
-        this.RefereshVideotypeList();
+        this.RefereshModuleList();
     }
-    RefereshVideotypeList() {
-        this._videotypeservice.getVideoType()
-            .subscribe((videotypedata) => this._videotype = videotypedata, (error) => { this._videotype = []; console.log(error) });
+    RefereshModuleList() {
+        this._moduleservice.getModule()
+            .subscribe((moduledata) => this._modules = moduledata, (error) => { this._modules = []; console.log(error) });
     }
     isFieldValid(field: string) {
-        return !this.VideoTypeform.get(field).valid && this.VideoTypeform.get(field).touched;
+        return !this.Moduleform.get(field).valid && this.Moduleform.get(field).touched;
     }
 
     displayFieldCss(field: string) {
@@ -45,27 +44,27 @@ export class videotype {
             'has-feedback': this.isFieldValid(field)
         };
     }
-    SaveVideotype() {
-        if (!this.VideoTypeform.valid) {
-            this.validateAllFormFields(this.VideoTypeform);
+    SaveModule() {
+        if (!this.Moduleform.valid) {
+            this.validateAllFormFields(this.Moduleform);
         } else {
-            let VideooldName = this.VideoTypeform.get('VideoOldtype').value,
-                VideonewName = this.VideoTypeform.get('Videotype').value;
+            let PoldName = this.Moduleform.get('ModuleOldname').value,
+                PnewName = this.Moduleform.get('Modulename').value;
             if (this.buttonName === 'Edit') {
-                if (VideooldName === '') {
+                if (PoldName === '') {
                     this._alertservice.errorOccurred();
                     return;
-                } else if (VideooldName === VideonewName) {
-                    this._alertservice.infoAlert('Please change the Video type before saving');
+                } else if (PoldName === PnewName) {
+                    this._alertservice.infoAlert('Please change the Module name before saving');
                     return;
                 }
-                this._videotypeservice.putVideoType(VideonewName, VideooldName)
+                this._moduleservice.putModule(PnewName, PoldName)
                     .subscribe((response: Response) => {
                         if (response.status === 201) {
                             console.log(response);
                             console.log('form Edited');
                             this.Reset();
-                            this.RefereshVideotypeList();
+                            this.RefereshModuleList();
                             this._alertservice.successedit(this._modulestrName);
                         } else {
                             console.log(response.status);
@@ -74,13 +73,13 @@ export class videotype {
                     }
                     );
             } else {
-                this._videotypeservice.postVideoType(this.VideoTypeform.get('Videotype').value)
+                this._moduleservice.postModule(this.Moduleform.get('Modulename').value)
                     .subscribe((response: Response) => {
                         if (response.status === 201) {
                             console.log(response);
                             console.log('form submitted');
                             this.Reset();
-                            this.RefereshVideotypeList();
+                            this.RefereshModuleList();
                             this._alertservice.successsave(this._modulestrName);
                         } else {
                             console.log(response.status);
@@ -93,25 +92,25 @@ export class videotype {
             }
         }
     }
-    EditVideotype(field: string) {
-        this.VideoTypeform.setValue({ Videotype: field, VideoOldtype: field });
+    EditModule(field: string) {
+        this.Moduleform.setValue({ Modulename: field, ModuleOldname: field });
         this.buttonName = 'Edit';
     }
     Reset() {
         this.buttonName = 'Add';
-        this.VideoTypeform.reset();
+        this.Moduleform.reset();
     }
-    DeleteVideotype(field: string) {
+    DeleteModule(field: string) {
         console.log(field);
         this._alertservice.alertwithrevert().then((result) => {
             if (result.value) {
-                this._videotypeservice.deleteVideoType(field)
+                this._moduleservice.deleteModule(field)
                     .subscribe((response: Response) => {
                         if (response.status === 201) {
                             console.log(response);
                             console.log('Item deleted');
                             this.Reset();
-                            this.RefereshVideotypeList();
+                            this.RefereshModuleList();
                             this._alertservice.sucessDeleted(this._modulestrName);
                         } else {
                             console.log(response.status);
@@ -136,4 +135,5 @@ export class videotype {
             }
         });
     }
+
 }

@@ -32,7 +32,7 @@ export class rmxtype{
     }
     RefereshRmxtypeList() {
         this._rmxtypeservice.getRmxType()
-            .subscribe((rmxtypedata) => this._rmxtype = rmxtypedata, (error) => { console.log(error) });
+            .subscribe((rmxtypedata) => this._rmxtype = rmxtypedata, (error) => {this._rmxtype=[]; console.log(error) });
     }
     isFieldValid(field: string) {
         return !this.RmxTypeform.get(field).valid && this.RmxTypeform.get(field).touched;

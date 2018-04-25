@@ -3,28 +3,54 @@ var express = require('express'),
     xml2js = require('xml2js'),
     _ = require('lodash'),
     xmldom = require('xmldom'),
-    parser = new xml2js.Parser({ explicitArray: false }),
+    parser = new xml2js.Parser(),
     xmlBuilder = new xml2js.Builder(),
     DOMParser = xmldom.DOMParser,
     XMLSerializer = xmldom.XMLSerializer,
     serializer = new XMLSerializer(),
-    TestTypeRouter = express.Router();
+    TestTypeRouter = express.Router(),
+    mkdirp = require('mkdirp');
+const directory = '../automation/xml/options';
 
 const TestTypeFilePath = '../automation/xml/options/testType.xml';
 
 TestTypeRouter.route('/testtype')
     .get(function (req, res) {
-        fs.readFile(TestTypeFilePath, function (err, data) {
-            parser.parseString(data, function (err, jresult) {
-                if (err) {
-                    res.status(500).send(err);
-                }
-                else {
+        if (fs.existsSync(TestTypeFilePath)) {
+            console.log("Directory Present");
+            fs.readFile(TestTypeFilePath, function (err, data) {
+                parser.parseString(data, function (err, jresult) {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                    else {
 
-                    res.status(200).json(jresult.TEST.TYPE);
+                        res.status(200).json(jresult.TEST.TYPE);
+                    }
+                });
+            });
+        } else {
+            console.log("Directory not Present");
+            mkdirp(directory, function (err) {
+                if (err) console.error(err)
+                else {
+                    fs.writeFileSync(TestTypeFilePath, '<TEST></TEST>');
+                    console.log('Directory created');
+                    fs.readFile(TestTypeFilePath, function (err, data) {
+                        parser.parseString(data, function (err, jresult) {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else {
+
+                                res.status(200).json(jresult.TEST.TYPE);
+                            }
+                        });
+                    });
+
                 }
             });
-        });
+        }
     })
     .post(function (req, res) {
         try {

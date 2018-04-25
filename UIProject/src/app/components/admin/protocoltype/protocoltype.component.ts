@@ -32,7 +32,7 @@ export class protocoltype implements OnInit {
     }
     RefereshProtocolList() {
         this._protocolservice.getProtocol()
-            .subscribe((protocoldata) => this._protocols = protocoldata, (error) => { console.log(error) });
+            .subscribe((protocoldata) => this._protocols = protocoldata, (error) => { this._protocols=[]; console.log(error) });
     }
     isFieldValid(field: string) {
         return !this.Protocolform.get(field).valid && this.Protocolform.get(field).touched;
